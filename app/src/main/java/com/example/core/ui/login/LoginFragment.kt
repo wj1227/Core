@@ -4,18 +4,17 @@ import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.base.BaseFragment
 import com.example.core.databinding.FragmentLoginBinding
-import com.example.core.ui.MainViewModel
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
-class LoginFragment : BaseFragment<FragmentLoginBinding, MainViewModel>(
+class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
     R.layout.fragment_login
 ) {
 
-    override val viewModel: MainViewModel by viewModel()
+    override val viewModel: LoginViewModel by viewModel()
 
     override fun init() {
         Completable.timer(2, TimeUnit.SECONDS)
