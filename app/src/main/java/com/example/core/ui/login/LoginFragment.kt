@@ -19,7 +19,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
     override fun init() {
         Completable.timer(2, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { findNavController().navigate(R.id.action_loginFragment_to_termsOfUseFragment) }
+            .subscribe { findNavController().navigate(R.id.action_loginFragment_to_signinFragment) }
             .addTo(compositeDisposable)
     }
 

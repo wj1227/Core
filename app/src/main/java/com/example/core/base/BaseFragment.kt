@@ -34,14 +34,12 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel>(
             setVariable(BR.viewModel, viewModel)
         }
 
-        println("BaseFragment onCreateView")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        println("BaseFragment onViewCreated")
         init()
     }
 

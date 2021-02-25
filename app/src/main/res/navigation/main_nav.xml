@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/tutorialFragment"
         android:name="com.example.core.ui.tutorial.TutorialFragment"
-        android:label="TutorialFragment"
+        android:label="코아정밀 시작하기"
         tools:layout="@layout/fragment_tutorial">
         <action
             android:id="@+id/action_tutorialFragment_to_loginFragment"
@@ -29,21 +29,12 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_termsOfUseFragment"
-            app:destination="@id/termsOfUseFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/termsOfUseFragment"
-        android:name="com.example.core.ui.tos.TermsOfUseFragment"
-        android:label="TermsOfUseFragment"
-        tools:layout="@layout/fragment_termsofuse">
-        <action
-            android:id="@+id/action_termsOfUseFragment_to_signinFragment"
+            android:id="@+id/action_loginFragment_to_signinFragment"
             app:destination="@id/signinFragment" />
     </fragment>
     <fragment
         android:id="@+id/signinFragment"
         android:name="com.example.core.ui.signin.SigninFragment"
-        android:label="SigninFragment"
+        android:label="회원가입"
         tools:layout="@layout/fragment_signin"/>
 </navigation>
