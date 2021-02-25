@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import com.example.core.R
 import com.example.core.base.BaseFragment
 import com.example.core.databinding.FragmentSigninBinding
-import com.example.core.ui.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SigninFragment : BaseFragment<FragmentSigninBinding, SigninViewModel>(
@@ -74,7 +73,7 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, SigninViewModel>(
                 6 -> etCellPhone.error = if (result)
                     null
                 else
-                    "바르게 "
+                    "바르게"
             }
         }
     }
