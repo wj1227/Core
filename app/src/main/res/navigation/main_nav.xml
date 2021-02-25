@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_splashFragment_to_tutorialFragment"
             app:destination="@id/tutorialFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_ownerMainFragment"
+            app:destination="@id/ownerMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/tutorialFragment"
@@ -31,10 +37,26 @@
         <action
             android:id="@+id/action_loginFragment_to_signinFragment"
             app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_ownerMainFragment"
+            app:destination="@id/ownerMainFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/signinFragment"
         android:name="com.example.core.ui.signin.SigninFragment"
         android:label="회원가입"
-        tools:layout="@layout/fragment_signin"/>
+        tools:layout="@layout/fragment_signin" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.core.ui.main.MainFragment"
+        android:label="고객용 메인"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/ownerMainFragment"
+        android:name="com.example.core.ui.ownermain.OwnerMainFragment"
+        android:label="오너용 메인"
+        tools:layout="@layout/fragment_owner_main" />
 </navigation>

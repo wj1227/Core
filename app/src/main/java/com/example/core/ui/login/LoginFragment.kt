@@ -1,14 +1,11 @@
 package com.example.core.ui.login
 
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.base.BaseFragment
 import com.example.core.databinding.FragmentLoginBinding
-import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
     R.layout.fragment_login
@@ -17,10 +14,21 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
     override val viewModel: LoginViewModel by viewModel()
 
     override fun init() {
-        Completable.timer(2, TimeUnit.SECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { findNavController().navigate(R.id.action_loginFragment_to_signinFragment) }
-            .addTo(compositeDisposable)
+
+        observing()
     }
+
+    private fun observing() {
+        with(viewModel) {
+            loginState.observe(viewLifecycleOwner, Observer { state ->
+                when (state) {
+                    LoginViewModel.LoginState.GO_LOGIN -> println("login!")
+                    LoginViewModel.LoginState.GO_SIGNIN -> goSignin()
+                }
+            })
+        }
+    }
+
+    private fun goSignin() = findNavController().navigate(R.id.action_loginFragment_to_signinFragment)
 
 }

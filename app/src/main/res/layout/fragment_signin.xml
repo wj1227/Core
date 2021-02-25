@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.core.ui.MainViewModel" />
+            type="com.example.core.ui.signin.SigninViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,6 +48,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_email">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="corejungmil@core.com" />
@@ -73,6 +75,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_password">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="********" />
@@ -99,6 +102,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_password_confirm">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password_confirm"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="********" />
@@ -125,6 +129,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_name">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="김종석" />
@@ -151,6 +156,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_company">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_company"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="코아정밀" />
@@ -177,6 +183,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_position">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_position"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="부장" />
@@ -203,6 +210,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_cellphone">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_cell_phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="01000000000" />
@@ -214,10 +222,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="60dp"
+                    android:enabled="false"
                     android:text="가 입 하 기"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/til_cellphone" />
+                    app:layout_constraintTop_toBottomOf="@id/til_cellphone"
+                    bind:onClick="@{() -> viewModel.input.onSigninClick()}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

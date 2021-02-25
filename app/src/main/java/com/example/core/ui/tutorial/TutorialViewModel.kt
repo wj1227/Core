@@ -36,17 +36,18 @@ class TutorialViewModel(
     val start: LiveData<Unit>
         get() = _start
 
+    override var startResult: Boolean
+        get() = repository.tutorial
+        set(value) {
+            repository.tutorial = value
+        }
+
+    override fun onStartClick() = _btnStartSubject.onNext(Unit)
+
     init {
         _btnStartSubject.throttleFirst(1, TimeUnit.SECONDS)
             .subscribe { startResult = true; _start.call() }
             .addTo(compositeDisposable)
     }
 
-    override fun onStartClick() = _btnStartSubject.onNext(Unit)
-
-    override var startResult: Boolean
-        get() = repository.tutorial
-        set(value) {
-            repository.tutorial = value
-        }
 }
