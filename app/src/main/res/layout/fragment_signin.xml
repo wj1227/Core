@@ -51,7 +51,7 @@
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="corejungmil@core.com" />
+                        android:hint="ex) corejungmil@core.com" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +78,8 @@
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="********" />
+                        android:hint="ex) ******"
+                        android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +106,8 @@
                         android:id="@+id/et_password_confirm"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="********" />
+                        android:hint="ex) ******"
+                        android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,7 +134,8 @@
                         android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="김종석" />
+                        android:hint="ex) 김종석"
+                        android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="회사"
+                    android:text="회사명"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_name" />
@@ -159,7 +162,8 @@
                         android:id="@+id/et_company"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="코아정밀" />
+                        android:hint="ex) 코아정밀"
+                        android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -186,7 +190,8 @@
                         android:id="@+id/et_position"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="부장" />
+                        android:hint="ex) 부장"
+                        android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -213,7 +218,8 @@
                         android:id="@+id/et_cell_phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="01000000000" />
+                        android:hint="ex) 01000000000"
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

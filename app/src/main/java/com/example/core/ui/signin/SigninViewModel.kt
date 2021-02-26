@@ -6,11 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import com.example.core.base.BaseViewModel
 import com.example.core.base.ViewModelType
 import com.example.core.constants.PASSWORD_REGEX
+import com.example.core.data.signin.SigninUser
+import com.example.core.data.signin.source.SigninRepository
+import com.example.core.utils.SingleLiveEvent
 import com.example.core.utils.ext.Septuple
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function7
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
@@ -24,23 +29,28 @@ interface SigninViewModelType : ViewModelType<SigninViewModelType.Input, SigninV
     interface Output {
         val validator: LiveData<Pair<Int, Boolean>>
         val buttonState: LiveData<Boolean>
+        val signinState: LiveData<SigninViewModel.SigninState>
+        val loading: LiveData<Boolean>
+        val errorMsg: LiveData<String>
     }
 }
 
-class SigninViewModel : BaseViewModel(), SigninViewModelType, SigninViewModelType.Input, SigninViewModelType.Output {
+class SigninViewModel(
+    private val repository: SigninRepository
+) : BaseViewModel(), SigninViewModelType, SigninViewModelType.Input, SigninViewModelType.Output {
     override val input: SigninViewModelType.Input
         get() = this
     override val outout: SigninViewModelType.Output
         get() = this
 
     private val _btnSigninSubject: Subject<Unit> = PublishSubject.create()
-    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.create()
-    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.create()
-    private val _passwordConfrimSubject: BehaviorSubject<String> = BehaviorSubject.create()
-    private val _nameSubject: BehaviorSubject<String> = BehaviorSubject.create()
-    private val _companySubject: BehaviorSubject<String> = BehaviorSubject.create()
-    private val _positionSubject: BehaviorSubject<String> = BehaviorSubject.create()
-    private val _cellPhoneSubject: BehaviorSubject<String> = BehaviorSubject.create()
+    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _passwordConfrimSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _nameSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _companySubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _positionSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _cellPhoneSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
     private val _signinHotObservable = Observable.combineLatest(
         validatorEmail(),
         validatorPassword(),
@@ -62,15 +72,31 @@ class SigninViewModel : BaseViewModel(), SigninViewModelType, SigninViewModelTyp
     override val buttonState: LiveData<Boolean>
         get() = _buttonState
 
+    private val _signinState: SingleLiveEvent<SigninState> = SingleLiveEvent()
+    override val signinState: LiveData<SigninState>
+        get() = _signinState
+
+    private val _loading: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    override val loading: LiveData<Boolean>
+        get() = _loading
+
+    private val _errorMsg: SingleLiveEvent<String> = SingleLiveEvent()
+    override val errorMsg: LiveData<String>
+        get() = _errorMsg
+
     override fun onSigninClick() = _btnSigninSubject.onNext(Unit)
 
     init {
+        println("boom!!!!")
         compositeDisposable.addAll(
             _signinHotObservable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(_buttonState::setValue),
 
             _btnSigninSubject.observeOn(AndroidSchedulers.mainThread())
-                .subscribe { println("success!!!") }
+                .subscribe { createUser(_emailSubject.value!!, _passwordSubject.value!!) },
+
+            _loadingSubject.subscribe(_loading::setValue),
+            _errorMessage.subscribe(_errorMsg::setValue)
         )
     }
 
@@ -83,11 +109,13 @@ class SigninViewModel : BaseViewModel(), SigninViewModelType, SigninViewModelTyp
     fun onNextCellPhone(cellPhone: String) = _cellPhoneSubject.onNext(cellPhone)
 
     private fun validatorEmail() =
-        _emailSubject.map { email -> Patterns.EMAIL_ADDRESS.matcher(email).matches() }
+        _emailSubject.filter { it.isNotEmpty() }
+            .map { email -> Patterns.EMAIL_ADDRESS.matcher(email).matches() }
             .doOnNext { _validator.value = Pair(0, it) }
 
     private fun validatorPassword() =
-        _passwordSubject.map { p -> Pattern.matches(PASSWORD_REGEX, p) }
+        _passwordSubject.filter { it.isNotEmpty() }
+            .map { p -> Pattern.matches(PASSWORD_REGEX, p) }
             .doOnNext { _validator.value = Pair(1, it) }
 
     private fun validatorPasswordConfirm() =
@@ -100,20 +128,57 @@ class SigninViewModel : BaseViewModel(), SigninViewModelType, SigninViewModelTyp
             .doOnNext { _validator.value = Pair(2, it) }
 
     private fun validatorName() =
-        _nameSubject.map { name -> name.length >= 4 }
+        _nameSubject.filter { it.isNotEmpty() }
+            .map { name -> name.length >= 2 }
             .doOnNext { _validator.value = Pair(3, it) }
 
     private fun validatorCompany() =
-        _companySubject.map { company -> company.length >= 2 }
+        _companySubject.filter { it.isNotEmpty() }
+            .map { company -> company.length >= 2 }
             .doOnNext { _validator.value = Pair(4, it) }
 
     private fun validatorPosition() =
-        _positionSubject.map { position -> position.length >= 2 }
+        _positionSubject.filter { it.isNotEmpty() }
+            .map { position -> position.length >= 2 }
             .doOnNext { _validator.value = Pair(5, it) }
 
     private fun validatorCellPhone() =
-        _cellPhoneSubject.map { number -> number.length== 11 }
+        _cellPhoneSubject.filter { it.isNotEmpty() }
+            .map { number -> number.length== 11 }
             .doOnNext { _validator.value = Pair(6, it) }
 
+    private fun createUser(email: String, password: String) {
+        repository.createUser(email, password, createUserModel())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { showLoading() }
+            .doAfterTerminate { hideLoading() }
+            .subscribe({
+                setState(SigninState.SUCCESS)
+            }, {
+               it.localizedMessage?.let { msg ->
+                   errorMessage(msg)
+               } ?: errorMessage("알수없는 오류발생")
+            }).addTo(compositeDisposable)
+    }
 
+    private fun createUserModel() =
+        SigninUser(
+            email = _emailSubject.value!!,
+            name = _nameSubject.value!!,
+            company = _companySubject.value!!,
+            position = _positionSubject.value!!,
+            cellPhone = _cellPhoneSubject.value!!
+        )
+
+    private fun setState(state: SigninState) = _signinState.postValue(state)
+
+
+    enum class SigninState {
+        SUCCESS
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+    }
 }

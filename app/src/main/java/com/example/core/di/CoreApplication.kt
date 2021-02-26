@@ -1,9 +1,7 @@
 package com.example.core.di
 
 import android.app.Application
-import com.example.core.modules.localModule
-import com.example.core.modules.repository
-import com.example.core.modules.viewModelModule
+import com.example.core.modules.*
 import com.facebook.stetho.Stetho
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -18,6 +16,8 @@ class CoreApplication : Application() {
             androidLogger()
             androidContext(this@CoreApplication)
             modules(
+                firebaseModule,
+                remoteModule,
                 localModule,
                 repository,
                 viewModelModule

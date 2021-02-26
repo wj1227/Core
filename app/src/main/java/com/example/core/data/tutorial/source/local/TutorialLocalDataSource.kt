@@ -1,4 +1,4 @@
-package com.example.core.data.tutorial.local
+package com.example.core.data.tutorial.source.local
 
 interface TutorialLocalDataSource {
     var tutorial: Boolean
