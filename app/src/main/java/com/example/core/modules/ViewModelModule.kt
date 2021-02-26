@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     single { MainViewModel() }
-    single { LoginViewModel() }
+    single { LoginViewModel(get()) }
     single { TutorialViewModel(get()) }
     single { SigninViewModel(get()) }
     single { MainFragmentViewModel() }
