@@ -17,7 +17,8 @@ abstract class BaseViewModel : ViewModel() {
     protected fun errorMessage(message: String) = _errorMessage.onNext(message)
 
     override fun onCleared() {
-        super.onCleared()
         compositeDisposable.clear()
+        super.onCleared()
+        println("onClear")
     }
 }

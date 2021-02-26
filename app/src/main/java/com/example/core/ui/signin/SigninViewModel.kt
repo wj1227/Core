@@ -87,6 +87,7 @@ class SigninViewModel(
     override fun onSigninClick() = _btnSigninSubject.onNext(Unit)
 
     init {
+        println("boom!!!!")
         compositeDisposable.addAll(
             _signinHotObservable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(_buttonState::setValue),
@@ -153,7 +154,6 @@ class SigninViewModel(
             .doOnSubscribe { showLoading() }
             .doAfterTerminate { hideLoading() }
             .subscribe({
-                println("${it.displayName}, ${it.email}, ${it.phoneNumber}. ${it.photoUrl}, ${it.uid}")
                 setState(SigninState.SUCCESS)
             }, {
                it.localizedMessage?.let { msg ->
@@ -178,4 +178,7 @@ class SigninViewModel(
         SUCCESS
     }
 
+    override fun onCleared() {
+        super.onCleared()
+    }
 }

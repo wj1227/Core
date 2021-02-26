@@ -1,7 +1,13 @@
 package com.example.core.ui.signin
 
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.core.R
 import com.example.core.base.BaseDialogFragment
 import com.example.core.base.BaseFragment
@@ -27,22 +33,22 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, SigninViewModel>(
             validator.observe(viewLifecycleOwner, Observer {
                 validatorText(it)
             })
-            buttonState.observe(viewLifecycleOwner, Observer {
+            buttonState.observe(this@SigninFragment, Observer {
                 binding.btnSignin.isEnabled = it
             })
-            signinState.observe(viewLifecycleOwner, Observer {
+            signinState.observe(this@SigninFragment, Observer {
                 when (it) {
-                    SigninViewModel.SigninState.SUCCESS -> this@SigninFragment.context?.showToast("가입축하")
+                    SigninViewModel.SigninState.SUCCESS -> findNavController().navigate(R.id.action_signinFragment_to_mainFragment)
                 }
             })
-            loading.observe(viewLifecycleOwner, Observer { result ->
+            loading.observe(this@SigninFragment, Observer { result ->
                 if (result) {
                     loadingView.show(parentFragmentManager, LOADING)
                 } else {
                     loadingView.dismissAllowingStateLoss()
                 }
             })
-            errorMsg.observe(viewLifecycleOwner, Observer {
+            errorMsg.observe(this@SigninFragment, Observer {
                 this@SigninFragment.context?.showToast(it)
             })
         }
@@ -95,5 +101,30 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, SigninViewModel>(
                     "핸드폰번호 자리수가 맞지 않습니다"
             }
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        println("here onAttach")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        println("here onCreate")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        println("here onDestroyView")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        println("here onDetach")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("here onDestroy")
     }
 }
