@@ -1,8 +1,9 @@
-package com.example.core.data.tutorial.local
+package com.example.core.data.tutorial.source.local
 
 import com.example.core.utils.PreferenceManager
 
-class TutorialLocalDataSourceImpl(private val preferenceManager: PreferenceManager) : TutorialLocalDataSource {
+class TutorialLocalDataSourceImpl(private val preferenceManager: PreferenceManager) :
+    TutorialLocalDataSource {
     override var tutorial: Boolean
         get() = preferenceManager.tutorial
         set(value) {

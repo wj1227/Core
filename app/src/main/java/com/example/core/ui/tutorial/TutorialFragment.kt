@@ -7,6 +7,7 @@ import com.example.core.base.BaseFragment
 import com.example.core.databinding.FragmentTutorialBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+//todo single activity launch mode need.....this fragment button is not working! (maybe new task..task..task?)
 class TutorialFragment : BaseFragment<FragmentTutorialBinding, TutorialViewModel>(
     R.layout.fragment_tutorial
 ) {

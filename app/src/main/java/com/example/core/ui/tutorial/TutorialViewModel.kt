@@ -3,7 +3,7 @@ package com.example.core.ui.tutorial
 import androidx.lifecycle.LiveData
 import com.example.core.base.BaseViewModel
 import com.example.core.base.ViewModelType
-import com.example.core.data.tutorial.TutorialRepository
+import com.example.core.data.tutorial.source.TutorialRepository
 import com.example.core.utils.SingleLiveEvent
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.PublishSubject
