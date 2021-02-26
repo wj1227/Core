@@ -19,6 +19,7 @@ interface LoginViewModelType : ViewModelType<LoginViewModelType.Input, LoginView
         fun onSigninClick()
         fun emailOnNext(email: String)
         fun passwordOnNext(password: String)
+        fun autoLogin(autoLogin: Boolean)
     }
     interface Output {
         val loginState: LiveData<LoginViewModel.LoginState>
@@ -52,6 +53,9 @@ class LoginViewModel(
     override fun onSigninClick() = _btnSigninSubject.onNext(Unit)
     override fun emailOnNext(email: String) = _emailSubject.onNext(email)
     override fun passwordOnNext(password: String) = _passwordSubject.onNext(password)
+    override fun autoLogin(autoLogin: Boolean) {
+        repository.autoLogin = autoLogin
+    }
 
     init {
         compositeDisposable.addAll(
@@ -92,6 +96,8 @@ class LoginViewModel(
                 } else {
                     setState(LoginState.GO_MAIN)
                 }
+
+                autoLogin(true)
             }, {
                 _errorMessage.value = it.message
             }).addTo(compositeDisposable)

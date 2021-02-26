@@ -23,7 +23,7 @@ val repositoryModule = module {
 
     single<LoginRepository> {
         LoginRepositoryImpl(
-            get()
+            get(), get()
         )
     }
 }
