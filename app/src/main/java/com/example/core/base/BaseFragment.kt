@@ -1,6 +1,5 @@
 package com.example.core.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,21 +21,12 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel>(
     protected abstract val viewModel: VM
 
     protected val compositeDisposable by lazy(::CompositeDisposable)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("onCreate fragment")
-    }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        println("onattach")
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        println("onCreateView")
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
 
         binding.run {

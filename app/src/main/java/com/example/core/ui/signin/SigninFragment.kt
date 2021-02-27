@@ -1,10 +1,5 @@
 package com.example.core.ui.signin
 
-import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -48,7 +43,7 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, SigninViewModel>(
                     loadingView.dismissAllowingStateLoss()
                 }
             })
-            errorMsg.observe(this@SigninFragment, Observer {
+            errorMessage.observe(this@SigninFragment, Observer {
                 this@SigninFragment.context?.showToast(it)
             })
         }
@@ -103,28 +98,4 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, SigninViewModel>(
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        println("here onAttach")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("here onCreate")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        println("here onDestroyView")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        println("here onDetach")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        println("here onDestroy")
-    }
 }

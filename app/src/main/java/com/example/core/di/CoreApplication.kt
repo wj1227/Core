@@ -19,7 +19,7 @@ class CoreApplication : Application() {
                 firebaseModule,
                 remoteModule,
                 localModule,
-                repository,
+                repositoryModule,
                 viewModelModule
             )
         }

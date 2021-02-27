@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity() {
             if (
                 destination.id == R.id.tutorialFragment ||
                 destination.id == R.id.loginFragment ||
-                destination.id == R.id.splashFragment
+                destination.id == R.id.splashFragment ||
+                destination.id == R.id.mainFragment ||
+                destination.id == R.id.ownerMainFragment
             ) {
                 supportActionBar?.hide()
             } else {

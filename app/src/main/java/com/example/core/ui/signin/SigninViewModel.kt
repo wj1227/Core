@@ -31,7 +31,6 @@ interface SigninViewModelType : ViewModelType<SigninViewModelType.Input, SigninV
         val buttonState: LiveData<Boolean>
         val signinState: LiveData<SigninViewModel.SigninState>
         val loading: LiveData<Boolean>
-        val errorMsg: LiveData<String>
     }
 }
 
@@ -80,14 +79,9 @@ class SigninViewModel(
     override val loading: LiveData<Boolean>
         get() = _loading
 
-    private val _errorMsg: SingleLiveEvent<String> = SingleLiveEvent()
-    override val errorMsg: LiveData<String>
-        get() = _errorMsg
-
     override fun onSigninClick() = _btnSigninSubject.onNext(Unit)
 
     init {
-        println("boom!!!!")
         compositeDisposable.addAll(
             _signinHotObservable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(_buttonState::setValue),
@@ -95,8 +89,7 @@ class SigninViewModel(
             _btnSigninSubject.observeOn(AndroidSchedulers.mainThread())
                 .subscribe { createUser(_emailSubject.value!!, _passwordSubject.value!!) },
 
-            _loadingSubject.subscribe(_loading::setValue),
-            _errorMessage.subscribe(_errorMsg::setValue)
+            _loadingSubject.subscribe(_loading::setValue)
         )
     }
 
@@ -157,8 +150,8 @@ class SigninViewModel(
                 setState(SigninState.SUCCESS)
             }, {
                it.localizedMessage?.let { msg ->
-                   errorMessage(msg)
-               } ?: errorMessage("알수없는 오류발생")
+                   _errorMessage.value = msg
+               } ?: _errorMessage.postValue("알수없는 오류 발생")
             }).addTo(compositeDisposable)
     }
 
@@ -178,7 +171,4 @@ class SigninViewModel(
         SUCCESS
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }
