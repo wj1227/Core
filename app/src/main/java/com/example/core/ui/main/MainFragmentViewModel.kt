@@ -62,7 +62,10 @@ class MainFragmentViewModel(
                 .subscribe { setState(MainState.PROFILE_CHANGE) },
 
             _selfCallSubject.throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe { setState(MainState.SELF_CALL) }
+                .subscribe { setState(MainState.SELF_CALL) },
+
+            _suggestionSubject.throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe { setState(MainState.SUGGESTION) }
         )
     }
 
@@ -71,6 +74,7 @@ class MainFragmentViewModel(
     enum class MainState {
         LOGOUT_SUCCESS,
         PROFILE_CHANGE,
-        SELF_CALL
+        SELF_CALL,
+        SUGGESTION
     }
 }

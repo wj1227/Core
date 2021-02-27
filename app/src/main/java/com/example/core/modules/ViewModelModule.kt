@@ -7,6 +7,7 @@ import com.example.core.ui.ownermain.OwnerMainViewModel
 import com.example.core.ui.profile.ProfileViewModel
 import com.example.core.ui.selfcall.SelfCallViewModel
 import com.example.core.ui.signin.SigninViewModel
+import com.example.core.ui.suggestion.SuggestionViewModel
 import com.example.core.ui.tutorial.TutorialViewModel
 import org.koin.dsl.module
 
@@ -19,4 +20,5 @@ val viewModelModule = module {
     single { OwnerMainViewModel() }
     single { ProfileViewModel(get()) }
     single { SelfCallViewModel(get()) }
+    single { SuggestionViewModel(get()) }
 }

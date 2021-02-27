@@ -8,6 +8,8 @@ import com.example.core.data.selfcall.source.remote.SelfCallRemoteDataSource
 import com.example.core.data.selfcall.source.remote.SelfCallRemoteDataSourceImpl
 import com.example.core.data.signin.source.remote.SigninRemoteDataSource
 import com.example.core.data.signin.source.remote.SigninRemoteDataSourceImpl
+import com.example.core.data.suggestion.source.remote.SuggestionRemoteDataSource
+import com.example.core.data.suggestion.source.remote.SuggestionRemoteDataSourceImpl
 import org.koin.dsl.module
 
 val remoteModule = module {
@@ -31,6 +33,12 @@ val remoteModule = module {
 
     single<SelfCallRemoteDataSource> {
         SelfCallRemoteDataSourceImpl(
+            get()
+        )
+    }
+
+    single<SuggestionRemoteDataSource> {
+        SuggestionRemoteDataSourceImpl(
             get()
         )
     }

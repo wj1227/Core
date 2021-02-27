@@ -10,6 +10,8 @@ import com.example.core.data.selfcall.source.local.SelfCallLocalDataSource
 import com.example.core.data.selfcall.source.local.SelfCallLocalDataSourceImpl
 import com.example.core.data.signin.source.local.SigninLocalDataSource
 import com.example.core.data.signin.source.local.SigninLocalDataSourceImpl
+import com.example.core.data.suggestion.source.local.SuggestionLocalDataSource
+import com.example.core.data.suggestion.source.local.SuggestionLocalDataSourceImpl
 import com.example.core.data.tutorial.source.local.TutorialLocalDataSource
 import com.example.core.data.tutorial.source.local.TutorialLocalDataSourceImpl
 import com.example.core.utils.PreferenceManager
@@ -50,6 +52,12 @@ val localModule = module {
 
     single<SelfCallLocalDataSource> {
         SelfCallLocalDataSourceImpl(
+            get()
+        )
+    }
+
+    single<SuggestionLocalDataSource> {
+        SuggestionLocalDataSourceImpl(
             get()
         )
     }
