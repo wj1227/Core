@@ -38,8 +38,10 @@ class LoginViewModel(
 
     private val _btnLoginSubject: Subject<Unit> = PublishSubject.create()
     private val _btnSigninSubject: Subject<Unit> = PublishSubject.create()
-    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
-    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("test@test.com")
+    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("000000")
+//    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+//    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
 
     private val _loginState: SingleLiveEvent<LoginState> = SingleLiveEvent()
     override val loginState: LiveData<LoginState>
