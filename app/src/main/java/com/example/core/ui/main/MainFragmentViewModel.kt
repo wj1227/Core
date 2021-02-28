@@ -65,7 +65,10 @@ class MainFragmentViewModel(
                 .subscribe { setState(MainState.SELF_CALL) },
 
             _suggestionSubject.throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe { setState(MainState.SUGGESTION) }
+                .subscribe { setState(MainState.SUGGESTION) },
+
+            _receiptSubject.throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe { setState(MainState.ORDER) }
         )
     }
 
@@ -75,6 +78,7 @@ class MainFragmentViewModel(
         LOGOUT_SUCCESS,
         PROFILE_CHANGE,
         SELF_CALL,
-        SUGGESTION
+        SUGGESTION,
+        ORDER
     }
 }
