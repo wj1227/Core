@@ -4,7 +4,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
+import com.example.core.base.BaseDialogFragment
 import com.example.core.base.BaseFragment
+import com.example.core.constants.LOADING
 import com.example.core.databinding.FragmentOrderBinding
 import com.example.core.utils.ext.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -13,6 +15,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>(
     R.layout.fragment_order
 ) {
     override val viewModel: OrderViewModel by viewModel()
+    private val loadingView by lazy { BaseDialogFragment(R.layout.fragment_loading) }
 
     override fun init() {
         with(viewModel) {
@@ -23,6 +26,13 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>(
                 when (state) {
                     OrderViewModel.OrderState.SUCCESS_UPLOAD -> popBack()
                     OrderViewModel.OrderState.VALIDATOR -> toast("양식에 맞게 다시 입력해주세요")
+                }
+            })
+            loading.observe(viewLifecycleOwner, Observer { result ->
+                if (result) {
+                    loadingView.show(parentFragmentManager, LOADING)
+                } else {
+                    loadingView.dismissAllowingStateLoss()
                 }
             })
         }
