@@ -4,6 +4,7 @@ import com.example.core.ui.MainViewModel
 import com.example.core.ui.login.LoginViewModel
 import com.example.core.ui.main.MainFragmentViewModel
 import com.example.core.ui.order.OrderViewModel
+import com.example.core.ui.orderlist.OrderListViewModel
 import com.example.core.ui.ownermain.OwnerMainViewModel
 import com.example.core.ui.profile.ProfileViewModel
 import com.example.core.ui.selfcall.SelfCallViewModel
@@ -23,4 +24,5 @@ val viewModelModule = module {
     single { SelfCallViewModel(get()) }
     single { SuggestionViewModel(get()) }
     single { OrderViewModel(get()) }
+    single { OrderListViewModel(get()) }
 }
