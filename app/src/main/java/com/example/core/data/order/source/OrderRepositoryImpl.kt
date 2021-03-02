@@ -21,7 +21,7 @@ class OrderRepositoryImpl(
     override val email: String
         get() = localDataSource.email
 
-    override fun orderUpload(email: String, item: Order): Completable {
-        return remoteDataSource.orderUpload(email, item)
+    override fun orderUpload(item: Order): Completable {
+        return remoteDataSource.orderUpload(item)
     }
 }

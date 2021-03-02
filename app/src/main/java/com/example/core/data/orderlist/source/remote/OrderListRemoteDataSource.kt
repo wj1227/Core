@@ -1,12 +1,8 @@
 package com.example.core.data.orderlist.source.remote
 
-import com.example.core.data.order.Order
-import com.example.core.data.selfcall.SelfCallItem
-import com.example.core.data.suggestion.SuggestionItem
-import io.reactivex.Single
+import com.example.core.data.orderlist.OrderList
+import io.reactivex.Observable
 
 interface OrderListRemoteDataSource {
-//    fun getSuggestion(): Single<List<SuggestionItem>>
-//    fun getSelfCall(): Single<List<SelfCallItem>>
-//    fun getOrder(): Single<List<Order>>
+    fun getAll(): Observable<OrderList>
 }

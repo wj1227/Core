@@ -9,5 +9,5 @@ interface OrderRepository {
     val cellPhone: String
     val email: String
 
-    fun orderUpload(email: String, item: Order): Completable
+    fun orderUpload(item: Order): Completable
 }

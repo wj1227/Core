@@ -1,11 +1,12 @@
 package com.example.core.data.order
 
 data class Order(
-    val tag: String,
-    val ea: Int,
-    val text: String,
-    val name: String,
-    val company: String,
-    val cellPhone: String,
-    val date: Long
+    val email: String? = null,
+    val tag: String? = null,
+    val ea: Int? = null,
+    val text: String? = null,
+    val name: String? = null,
+    val company: String? = null,
+    val cellPhone: String? = null,
+    val date: Long? = null
 )

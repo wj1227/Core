@@ -10,6 +10,8 @@ import com.example.core.data.orderlist.source.OrderListRepository
 import com.example.core.data.suggestion.SuggestionItem
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.koin.ext.scope
 
 interface OrderListViewModelType :
@@ -19,7 +21,12 @@ interface OrderListViewModelType :
     }
 
     interface Output {
-
+//        val allOrder: String
+//        val laserWelding: String
+//        val laserPiece: String
+//        val algonWelding: String
+//        val suggestion: String
+//        val selfCall: String
     }
 }
 
@@ -32,96 +39,37 @@ class OrderListViewModel(
     override val outout: OrderListViewModelType.Output
         get() = this
 
-    val database = FirebaseFirestore.getInstance()
-
-    //todo selfcall(구인구직), order(주문접수)에서 구조바꾸는게 좋을 것 같다..
-    /**
-     * 기존 구조 : 컬렉션(구인) -> 덕트먼트(회사) -> 컬렉션(이메일) -> 자동ID
-     * 기존 구조 : 컬렉션(구직) -> 덕트먼트(회사) -> 컬렉션(이메일) -> 자동ID
-     * 바꿀 구조 : 컬렉션(구인구직) -> 자동ID -> 컬렉션(구인 or 구직) -> 자동ID
-     *
-     * 기존 구조 : 컬렉션(주문접수) -> 덕트먼트(레이저,알곤) -> 컬렉션(이메일) -> 자동ID
-     * 바꿀 구조 : 컬렉션(주문접수) -> 자동ID -> 컬렉션(태그) -> 자동ID
-     */
     init {
-//        val docRef = database.collection(SUGGESTION)
-//        docRef.get()
-//            .addOnSuccessListener { result ->
-//                println("size: ${result.size()}")
-//                for (document in result) {
-//                    //println("ddd $document")
-//                    //result.size()
+        repository.getData()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { println("?: $it") }
+            .doOnSubscribe { println("subs") }
+            .doAfterTerminate { println("?? termi") }
+            .doOnNext { println("zzz: $it") }
+
+
+
+//        database.collection(ORDER)
+//            .get()
+//            .addOnSuccessListener { querySnapshot ->
+////                for (data in querySnapshot) {
+////                    val test =data.toObject(Order::class.java)
+////                    println("test: $test")
+////                }
+//                val dd = querySnapshot.toObjects(Order::class.java).filter {
+//                    it.tag == "레이저조각"
 //                }
+//
+//                println("size: $dd")
 //            }
-//            .addOnFailureListener { exception ->
-//                println("fail: $exception")
+//            .addOnFailureListener { println("주문접수 fail: $it") }
+//
+//        database.collection("건의사항").get()
+//            .addOnSuccessListener {
+//                println("123: ${it.size()}")
 //            }
-
-//        val docRef = database
-//            .collection("주문접수")
-//            .document("레이저용접")
-//            .collection("test@test.com")
-//        docRef.get()
-//            .addOnSuccessListener { document ->
-//                println("size: ${document.size()}")
-//                if (document != null) {
-//                    println("data: ${document}")
-//                } else {
-//                    println("else")
-//                }
-//            }
-//            .addOnFailureListener { exception ->
-//                println("fail: ${exception.message}")
-//            }
-
-       val dd = database.collection("테스트11")
-           .document()
-           .collection("테스트")
-
-           dd.get()
-           .addOnSuccessListener { document ->
-               println("0size: ${document.size()}")
-               if (document != null) {
-                   println("0data: ${document}")
-               } else {
-                   println("else")
-               }
-           }
-           .addOnFailureListener { exception ->
-               println("fail: ${exception.message}")
-           }
-
-
-
-        val ee = database
-            .collection("테스트11")
-            .document()
-            .collection("테스트1")
-
-            ee.get()
-            .addOnSuccessListener { document ->
-                println("1size: ${document.size()}")
-                if (document != null) {
-                    println("1data: ${document}")
-                } else {
-                    println("else")
-                }
-            }
-            .addOnFailureListener { exception ->
-                println("fail: ${exception.message}")
-            }
-
-        val eeeee = database.collectionGroup("테스트1")
-        eeeee.get()
-            .addOnSuccessListener { queryDocumentSnapshots ->
-                println("size.... ${queryDocumentSnapshots.size()}")
-                // [START_EXCLUDE]
-                for (snap in queryDocumentSnapshots) {
-                    println("snap: $snap")
-                    //Log.d(TAG, "${snap.id} => ${snap.data}")
-                }
-                // [END_EXCLUDE]
-            }
+//            .addOnFailureListener { println("123 fail: ${it.message}") }
 
 
     }

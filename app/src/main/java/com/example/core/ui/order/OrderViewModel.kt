@@ -97,7 +97,7 @@ class OrderViewModel(
     }
 
     private fun upload(item: Order) {
-        repository.orderUpload(repository.email, item)
+        repository.orderUpload(item)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { showLoading() }
@@ -110,6 +110,7 @@ class OrderViewModel(
     }
 
     private fun createModel() = Order(
+        email = repository.email,
         tag = _tag.value!!,
         ea = _eaSubject.value!!.toInt(),
         text = _textSubject.value!!,

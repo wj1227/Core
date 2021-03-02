@@ -105,7 +105,7 @@ class SelfCallViewModel(
     private fun setState(state: SelfCallState) = _state.postValue(state)
 
     private fun upload(item: SelfCallItem) {
-        repository.upload(repository.email, repository.company, item)
+        repository.upload(item)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { showLoading() }
@@ -119,6 +119,7 @@ class SelfCallViewModel(
     }
 
     private fun createItem() = SelfCallItem(
+        email = repository.email,
         tag = _tagSubject.value!!,
         work = _workSubject.value!!,
         salary = _salarySubject.value!!,
