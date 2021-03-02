@@ -21,6 +21,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
                     MainFragmentViewModel.MainState.PROFILE_CHANGE -> goProfileChange()
                     MainFragmentViewModel.MainState.SELF_CALL -> goSelfCall()
                     MainFragmentViewModel.MainState.SUGGESTION -> goSuggestion()
+                    MainFragmentViewModel.MainState.ORDER -> goOrder()
+                    MainFragmentViewModel.MainState.ORDER_LIST -> goOrderList()
                 }
             })
         }
@@ -30,4 +32,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
     private fun goProfileChange() = findNavController().navigate(R.id.action_mainFragment_to_profileFragment)
     private fun goSelfCall() = findNavController().navigate(R.id.action_mainFragment_to_selfCallFragment)
     private fun goSuggestion() = findNavController().navigate(R.id.action_mainFragment_to_suggestionFragment)
+    private fun goOrder() = findNavController().navigate(R.id.action_mainFragment_to_orderFragment)
+    private fun goOrderList() = findNavController().navigate(R.id.action_mainFragment_to_orderListFragment)
 }

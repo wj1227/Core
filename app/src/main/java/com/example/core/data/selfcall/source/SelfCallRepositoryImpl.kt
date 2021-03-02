@@ -15,7 +15,7 @@ class SelfCallRepositoryImpl(
     override val company: String
         get() = localDataSource.company
 
-    override fun upload(email: String, company: String, item: SelfCallItem): Completable {
-        return remoteDataSource.upload(email, company, item)
+    override fun upload(item: SelfCallItem): Completable {
+        return remoteDataSource.upload(item)
     }
 }

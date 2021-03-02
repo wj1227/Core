@@ -7,5 +7,5 @@ interface SelfCallRepository {
     val email: String
     val company: String
 
-    fun upload(email: String, company: String, item: SelfCallItem): Completable
+    fun upload(item: SelfCallItem): Completable
 }

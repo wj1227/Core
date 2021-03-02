@@ -1,16 +1,17 @@
 package com.example.core.data.selfcall.source.remote
 
+import com.example.core.constants.SELF_CALL
 import com.example.core.data.selfcall.SelfCallItem
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
 
 class SelfCallRemoteDataSourceImpl(private val database: FirebaseFirestore) :
     SelfCallRemoteDataSource {
-    override fun upload(email: String, company: String, item: SelfCallItem): Completable {
+    override fun upload(item: SelfCallItem): Completable {
         return Completable.create { emitter ->
             database
-                .collection(item.tag).document(company)
-                .collection(email).add(item)
+                .collection(SELF_CALL)
+                .add(item)
                 .addOnSuccessListener { emitter.onComplete() }
                 .addOnFailureListener { emitter.onError(it) }
         }

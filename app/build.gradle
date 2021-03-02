@@ -78,4 +78,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-firestore:22.1.0'
+    implementation 'com.google.firebase:firebase-core:18.0.2'
+
+    // rx firebase!
+    implementation 'com.androidhuman.rxfirebase2:firebase-firestore-kotlin:17.1.5.0'
+    implementation 'com.androidhuman.rxfirebase2:firebase-firestore:17.1.5.0'
+    implementation 'com.androidhuman.rxfirebase2:firebase-core:16.0.5.0'
+
 }
