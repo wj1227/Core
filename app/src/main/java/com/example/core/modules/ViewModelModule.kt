@@ -9,6 +9,7 @@ import com.example.core.ui.ownermain.OwnerMainViewModel
 import com.example.core.ui.profile.ProfileViewModel
 import com.example.core.ui.selfcall.SelfCallViewModel
 import com.example.core.ui.signin.SigninViewModel
+import com.example.core.ui.splash.SplashViewModel
 import com.example.core.ui.suggestion.SuggestionViewModel
 import com.example.core.ui.tutorial.TutorialViewModel
 import org.koin.dsl.module
@@ -25,4 +26,5 @@ val viewModelModule = module {
     single { SuggestionViewModel(get()) }
     single { OrderViewModel(get()) }
     single { OrderListViewModel(get()) }
+    single { SplashViewModel(get()) }
 }

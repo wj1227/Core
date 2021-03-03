@@ -18,4 +18,12 @@
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:layout_marginEnd">20dp</item>
     </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" >
+
+    </style>
+
+    <style name="SplashTheme" parent="NoActionBar">
+        <item name="background">@drawable/ic_forward</item>
+    </style>
 </resources>

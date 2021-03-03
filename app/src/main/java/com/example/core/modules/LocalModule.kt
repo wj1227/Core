@@ -14,6 +14,8 @@ import com.example.core.data.selfcall.source.local.SelfCallLocalDataSource
 import com.example.core.data.selfcall.source.local.SelfCallLocalDataSourceImpl
 import com.example.core.data.signin.source.local.SigninLocalDataSource
 import com.example.core.data.signin.source.local.SigninLocalDataSourceImpl
+import com.example.core.data.splash.source.local.SplashLocalDataSource
+import com.example.core.data.splash.source.local.SplashLocalDataSourceImpl
 import com.example.core.data.suggestion.source.local.SuggestionLocalDataSource
 import com.example.core.data.suggestion.source.local.SuggestionLocalDataSourceImpl
 import com.example.core.data.tutorial.source.local.TutorialLocalDataSource
@@ -74,6 +76,12 @@ val localModule = module {
 
     single<OrderListLocalDataSource> {
         OrderListLocalDataSourceImpl(
+            get()
+        )
+    }
+
+    single<SplashLocalDataSource> {
+        SplashLocalDataSourceImpl(
             get()
         )
     }

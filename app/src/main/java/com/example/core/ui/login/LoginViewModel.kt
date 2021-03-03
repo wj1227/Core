@@ -58,16 +58,16 @@ class LoginViewModel(
     }
 
     init {
-//        compositeDisposable.addAll(
-//            _btnLoginSubject.throttleFirst(1, TimeUnit.SECONDS)
-//                .subscribe { loginValidator() },
-//
-//            _btnSigninSubject.throttleFirst(1, TimeUnit.SECONDS)
-//                .subscribe { setState(LoginState.GO_SIGNIN) },
-//
-//            _loadingSubject.observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(_loading::setValue)
-//        )
+        compositeDisposable.addAll(
+            _btnLoginSubject.throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe { loginValidator() },
+
+            _btnSigninSubject.throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe { setState(LoginState.GO_SIGNIN) },
+
+            _loadingSubject.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(_loading::setValue)
+        )
     }
 
 
@@ -104,18 +104,6 @@ class LoginViewModel(
             }, {
                 _errorMessage.value = it.message
             }).addTo(compositeDisposable)
-    }
-
-    fun bindRx() {
-        compositeDisposable.addAll(
-            _btnLoginSubject.throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe { loginValidator() },
-
-            _btnSigninSubject.throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe { setState(LoginState.GO_SIGNIN) },
-
-            _loadingSubject.subscribe(_loading::setValue)
-        )
     }
 
     enum class LoginState {

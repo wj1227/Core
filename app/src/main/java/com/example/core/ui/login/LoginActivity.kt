@@ -1,48 +1,50 @@
 package com.example.core.ui.login
 
+import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.example.core.R
+import com.example.core.base.BaseActivity
 import com.example.core.base.BaseDialogFragment
-import com.example.core.base.BaseFragment
 import com.example.core.constants.LOADING
-import com.example.core.databinding.FragmentLoginBinding
+import com.example.core.databinding.ActivityLoginBinding
 import com.example.core.utils.ext.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
-    R.layout.fragment_login
+//todo 로그인 액티비티 정리 해야함
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(
+    R.layout.activity_login
 ) {
-
     override val viewModel: LoginViewModel by viewModel()
     private val loadingView by lazy { BaseDialogFragment(R.layout.fragment_loading) }
 
-    override fun init() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        observing()
         initTextWatcher()
     }
 
-    private fun observing() {
+    override fun initObserving() {
+        super.initObserving()
+
         with(viewModel) {
-            loginState.observe(viewLifecycleOwner, Observer { state ->
+            loginState.observe(this@LoginActivity, Observer { state ->
                 when (state) {
                     LoginViewModel.LoginState.EMAIL_EMPTY -> toast("이메일을 입력해주세요")
                     LoginViewModel.LoginState.PASSWORD_EMPTY -> toast("비밀번호를 입력해주세요")
-                    LoginViewModel.LoginState.GO_SIGNIN -> goSignin()
-                    LoginViewModel.LoginState.GO_MAIN -> goMain()
-                    LoginViewModel.LoginState.GO_OWNER -> goOwnerMain()
+                    LoginViewModel.LoginState.GO_SIGNIN -> ""
+                    LoginViewModel.LoginState.GO_MAIN -> ""
+                    LoginViewModel.LoginState.GO_OWNER -> ""
                 }
             })
-            loading.observe(viewLifecycleOwner, Observer { result ->
+            loading.observe(this@LoginActivity, Observer { result ->
                 if (result) {
-                    loadingView.show(parentFragmentManager, LOADING)
+                    loadingView.show(supportFragmentManager, LOADING)
                 } else {
                     loadingView.dismissAllowingStateLoss()
                 }
             })
-            errorMessage.observe(viewLifecycleOwner, Observer {
+            errorMessage.observe(this@LoginActivity, Observer {
                 toast(it)
             })
         }
@@ -55,9 +57,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
         }
     }
 
-    private fun toast(message: String) = this.context?.showToast(message)
-    private fun goSignin() = findNavController().navigate(R.id.action_loginFragment_to_signinFragment)
-    private fun goMain() = findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
-    private fun goOwnerMain() = findNavController().navigate(R.id.action_loginFragment_to_ownerMainFragment)
-
+    private fun toast(message: String) = this.showToast(message)
+    //private fun goSignin() = findNavController().navigate(R.id.action_loginFragment_to_signinFragment)
+    //private fun goMain() = findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+    //private fun goOwnerMain() = findNavController().navigate(R.id.action_loginFragment_to_ownerMainFragment)
 }

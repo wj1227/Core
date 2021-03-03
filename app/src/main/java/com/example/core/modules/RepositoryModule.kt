@@ -14,6 +14,8 @@ import com.example.core.data.selfcall.source.SelfCallRepository
 import com.example.core.data.selfcall.source.SelfCallRepositoryImpl
 import com.example.core.data.signin.source.SigninRepository
 import com.example.core.data.signin.source.SigninRepositoryImpl
+import com.example.core.data.splash.source.SplashRepository
+import com.example.core.data.splash.source.SplashRepositoryImpl
 import com.example.core.data.suggestion.source.SuggestionRepository
 import com.example.core.data.suggestion.source.SuggestionRepositoryImpl
 import com.example.core.data.tutorial.source.TutorialRepository
@@ -73,6 +75,12 @@ val repositoryModule = module {
     single<OrderListRepository> {
         OrderListRepositoryImpl(
             get(), get()
+        )
+    }
+
+    single<SplashRepository> {
+        SplashRepositoryImpl(
+            get()
         )
     }
 }
