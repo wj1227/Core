@@ -54,6 +54,30 @@ class MainFragmentViewModel(
         get() = _mainState
 
     init {
+//        compositeDisposable.addAll(
+//            _logoutSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { repository.logout(); setState(MainState.LOGOUT_SUCCESS) },
+//
+//            _profileSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { setState(MainState.PROFILE_CHANGE) },
+//
+//            _selfCallSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { setState(MainState.SELF_CALL) },
+//
+//            _suggestionSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { setState(MainState.SUGGESTION) },
+//
+//            _receiptSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { setState(MainState.ORDER) },
+//
+//            _myOrderSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { setState(MainState.ORDER_LIST) }
+//        )
+    }
+
+    private fun setState(state: MainState) = _mainState.postValue(state)
+
+    fun bindRx() {
         compositeDisposable.addAll(
             _logoutSubject.throttleFirst(1, TimeUnit.SECONDS)
                 .subscribe { repository.logout(); setState(MainState.LOGOUT_SUCCESS) },
@@ -74,8 +98,6 @@ class MainFragmentViewModel(
                 .subscribe { setState(MainState.ORDER_LIST) }
         )
     }
-
-    private fun setState(state: MainState) = _mainState.postValue(state)
 
     enum class MainState {
         LOGOUT_SUCCESS,

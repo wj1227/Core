@@ -1,5 +1,9 @@
 package com.example.core.ui.main
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.core.R
@@ -13,6 +17,14 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
 ) {
     override val viewModel: MainFragmentViewModel by viewModel()
 
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        println("onon")
+//        return super.onCreateView(inflater, container, savedInstanceState)
+//    }
     override fun init() {
         with(viewModel) {
             mainState.observe(viewLifecycleOwner, Observer { state ->
@@ -26,6 +38,11 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
                 }
             })
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.bindRx()
     }
 
     private fun goLogin() = findNavController().navigate(R.id.action_mainFragment_to_loginFragment)

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.core.ui.orderlist.OrderListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@{viewModel.outout.orders}"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_order_title"
@@ -50,41 +54,41 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_order_title" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_order_title">
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="6dp"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:weightSum="3"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/tv_order_title">-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    tools:text="레이저용접\n1건" />
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:textSize="18dp"-->
+            <!--                    tools:text="레이저용접\n1건" />-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    tools:text="레이저조각\n1건" />
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:textSize="18dp"-->
+            <!--                    tools:text="레이저조각\n1건" />-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    tools:text="알곤용접\n1건" />
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:textSize="18dp"-->
+            <!--                    tools:text="알곤용접\n1건" />-->
 
-            </LinearLayout>
+            <!--            </LinearLayout>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -110,6 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@{viewModel.outout.suggestions}"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_suggestion_title"
@@ -149,6 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@{viewModel.outout.selfCalls}"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_selfcall_title"

@@ -6,12 +6,16 @@ import com.example.core.data.main.source.local.MainLocalDataSource
 import com.example.core.data.main.source.local.MainLocalDataSourceImpl
 import com.example.core.data.order.source.local.OrderLocalDataSource
 import com.example.core.data.order.source.local.OrderLocalDataSourceImpl
+import com.example.core.data.orderlist.source.local.OrderListLocalDataSource
+import com.example.core.data.orderlist.source.local.OrderListLocalDataSourceImpl
 import com.example.core.data.profile.source.local.ProfileLocalDataSource
 import com.example.core.data.profile.source.local.ProfileLocalDataSourceImpl
 import com.example.core.data.selfcall.source.local.SelfCallLocalDataSource
 import com.example.core.data.selfcall.source.local.SelfCallLocalDataSourceImpl
 import com.example.core.data.signin.source.local.SigninLocalDataSource
 import com.example.core.data.signin.source.local.SigninLocalDataSourceImpl
+import com.example.core.data.splash.source.local.SplashLocalDataSource
+import com.example.core.data.splash.source.local.SplashLocalDataSourceImpl
 import com.example.core.data.suggestion.source.local.SuggestionLocalDataSource
 import com.example.core.data.suggestion.source.local.SuggestionLocalDataSourceImpl
 import com.example.core.data.tutorial.source.local.TutorialLocalDataSource
@@ -66,6 +70,18 @@ val localModule = module {
 
     single<OrderLocalDataSource> {
         OrderLocalDataSourceImpl(
+            get()
+        )
+    }
+
+    single<OrderListLocalDataSource> {
+        OrderListLocalDataSourceImpl(
+            get()
+        )
+    }
+
+    single<SplashLocalDataSource> {
+        SplashLocalDataSourceImpl(
             get()
         )
     }
