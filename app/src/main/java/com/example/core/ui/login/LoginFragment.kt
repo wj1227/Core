@@ -24,6 +24,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
         initTextWatcher()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.bindRx()
+    }
+
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        println("destroy")
+//    }
+
     private fun observing() {
         with(viewModel) {
             loginState.observe(viewLifecycleOwner, Observer { state ->

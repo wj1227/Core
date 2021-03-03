@@ -26,7 +26,7 @@ interface LoginViewModelType : ViewModelType<LoginViewModelType.Input, LoginView
         val loading: LiveData<Boolean>
     }
 }
-
+//todo 전체 bindRx -> init 해결해야함.....
 class LoginViewModel(
     private val repository: LoginRepository
 ) : BaseViewModel(), LoginViewModelType, LoginViewModelType.Input, LoginViewModelType.Output {
@@ -38,10 +38,8 @@ class LoginViewModel(
 
     private val _btnLoginSubject: Subject<Unit> = PublishSubject.create()
     private val _btnSigninSubject: Subject<Unit> = PublishSubject.create()
-    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("test@test.com")
-    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("000000")
-//    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
-//    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _emailSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+    private val _passwordSubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
 
     private val _loginState: SingleLiveEvent<LoginState> = SingleLiveEvent()
     override val loginState: LiveData<LoginState>
@@ -60,30 +58,33 @@ class LoginViewModel(
     }
 
     init {
-        compositeDisposable.addAll(
-            _btnLoginSubject.throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe { loginValidator() },
-
-            _btnSigninSubject.throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe { setState(LoginState.GO_SIGNIN) },
-
-            _loadingSubject.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(_loading::setValue)
-        )
+//        compositeDisposable.addAll(
+//            _btnLoginSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { loginValidator() },
+//
+//            _btnSigninSubject.throttleFirst(1, TimeUnit.SECONDS)
+//                .subscribe { setState(LoginState.GO_SIGNIN) },
+//
+//            _loadingSubject.observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(_loading::setValue)
+//        )
     }
 
 
-    private fun setState(state: LoginState) = _loginState.postValue(state)
+    private fun setState(state: LoginState) {
+        _loginState.value = state
+    }
 
     private fun loginValidator() {
-        val email = _emailSubject.value
-        val password = _passwordSubject.value
-
-        when {
-            email.isNullOrEmpty() -> setState(LoginState.EMAIL_EMPTY)
-            password.isNullOrEmpty() -> setState(LoginState.PASSWORD_EMPTY)
-            else -> login(email, password)
-        }
+        login("test@test.com", "000000")
+//        val email = _emailSubject.value
+//        val password = _passwordSubject.value
+//
+//        when {
+//            email.isNullOrEmpty() -> setState(LoginState.EMAIL_EMPTY)
+//            password.isNullOrEmpty() -> setState(LoginState.PASSWORD_EMPTY)
+//            else -> login(email, password)
+//        }
     }
 
     private fun login(email: String, password: String) {
@@ -103,6 +104,18 @@ class LoginViewModel(
             }, {
                 _errorMessage.value = it.message
             }).addTo(compositeDisposable)
+    }
+
+    fun bindRx() {
+        compositeDisposable.addAll(
+            _btnLoginSubject.throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe { loginValidator() },
+
+            _btnSigninSubject.throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe { setState(LoginState.GO_SIGNIN) },
+
+            _loadingSubject.subscribe(_loading::setValue)
+        )
     }
 
     enum class LoginState {

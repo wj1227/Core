@@ -23,6 +23,11 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, SigninViewModel>(
         textListener()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.bindRx()
+    }
+
     private fun observing() {
         with(viewModel) {
             validator.observe(viewLifecycleOwner, Observer {

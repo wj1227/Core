@@ -45,6 +45,12 @@ class TutorialViewModel(
     override fun onStartClick() = _btnStartSubject.onNext(Unit)
 
     init {
+//        _btnStartSubject.throttleFirst(1, TimeUnit.SECONDS)
+//            .subscribe { startResult = true; _start.call() }
+//            .addTo(compositeDisposable)
+    }
+
+    fun bindRx() {
         _btnStartSubject.throttleFirst(1, TimeUnit.SECONDS)
             .subscribe { startResult = true; _start.call() }
             .addTo(compositeDisposable)

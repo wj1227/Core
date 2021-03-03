@@ -22,4 +22,9 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding, TutorialViewModel
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.bindRx()
+    }
+
 }
