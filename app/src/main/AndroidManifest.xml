@@ -21,13 +21,25 @@
             </intent-filter>
         </activity>
 
+        <!--        <activity-->
+        <!--            android:name=".ui.MainActivity"-->
+        <!--            android:launchMode="singleTop"-->
+        <!--            android:theme="@style/Theme.Core" />-->
+
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Core" />
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.signin.SigninActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.main.MainActivity"
+            android:exported="false"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Core" />
 

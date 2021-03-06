@@ -82,15 +82,15 @@ class SigninViewModel(
     override fun onSigninClick() = _btnSigninSubject.onNext(Unit)
 
     init {
-//        compositeDisposable.addAll(
-//            _signinHotObservable.observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(_buttonState::setValue),
-//
-//            _btnSigninSubject.observeOn(AndroidSchedulers.mainThread())
-//                .subscribe { createUser(_emailSubject.value!!, _passwordSubject.value!!) },
-//
-//            _loadingSubject.subscribe(_loading::setValue)
-//        )
+        compositeDisposable.addAll(
+            _signinHotObservable.observeOn(AndroidSchedulers.mainThread())
+                .subscribe(_buttonState::setValue),
+
+            _btnSigninSubject.observeOn(AndroidSchedulers.mainThread())
+                .subscribe { createUser(_emailSubject.value!!, _passwordSubject.value!!) },
+
+            _loadingSubject.subscribe(_loading::setValue)
+        )
     }
 
     fun onNextEmail(email: String) = _emailSubject.onNext(email)

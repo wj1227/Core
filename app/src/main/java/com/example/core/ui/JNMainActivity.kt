@@ -6,11 +6,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.core.R
 
-class MainActivity : AppCompatActivity() {
+class JNMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_jn_main)
 
         setupActionBarWithNavController(findNavController(R.id.nav_host))
 

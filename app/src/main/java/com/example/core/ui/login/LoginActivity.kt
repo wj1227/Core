@@ -1,5 +1,6 @@
 package com.example.core.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
@@ -8,6 +9,7 @@ import com.example.core.base.BaseActivity
 import com.example.core.base.BaseDialogFragment
 import com.example.core.constants.LOADING
 import com.example.core.databinding.ActivityLoginBinding
+import com.example.core.ui.signin.SigninActivity
 import com.example.core.utils.ext.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(
                 when (state) {
                     LoginViewModel.LoginState.EMAIL_EMPTY -> toast("이메일을 입력해주세요")
                     LoginViewModel.LoginState.PASSWORD_EMPTY -> toast("비밀번호를 입력해주세요")
-                    LoginViewModel.LoginState.GO_SIGNIN -> ""
+                    LoginViewModel.LoginState.GO_SIGNIN -> goSignin()
                     LoginViewModel.LoginState.GO_MAIN -> ""
                     LoginViewModel.LoginState.GO_OWNER -> ""
                 }
@@ -58,6 +60,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(
     }
 
     private fun toast(message: String) = this.showToast(message)
+    private fun goSignin() = startActivity(Intent(this, SigninActivity::class.java))
     //private fun goSignin() = findNavController().navigate(R.id.action_loginFragment_to_signinFragment)
     //private fun goMain() = findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
     //private fun goOwnerMain() = findNavController().navigate(R.id.action_loginFragment_to_ownerMainFragment)

@@ -3,10 +3,9 @@ package com.example.core.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.core.ui.MainActivity
+import com.example.core.ui.JNMainActivity
 import com.example.core.ui.login.LoginActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +18,8 @@ class SplashActivity : AppCompatActivity() {
 
         viewModel.state.observe(this, Observer { result ->
             if (result) {
-                goMain()
+                //goMain()
+                goLogin()
             } else {
                 goLogin()
             }
@@ -34,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goMain() {
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, JNMainActivity::class.java))
         }, 2000)
     }
 }

@@ -26,7 +26,7 @@ interface LoginViewModelType : ViewModelType<LoginViewModelType.Input, LoginView
         val loading: LiveData<Boolean>
     }
 }
-//todo 전체 bindRx -> init 해결해야함.....
+
 class LoginViewModel(
     private val repository: LoginRepository
 ) : BaseViewModel(), LoginViewModelType, LoginViewModelType.Input, LoginViewModelType.Output {
