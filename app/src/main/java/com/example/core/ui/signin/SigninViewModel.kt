@@ -166,19 +166,6 @@ class SigninViewModel(
 
     private fun setState(state: SigninState) = _signinState.postValue(state)
 
-    fun bindRx() {
-        compositeDisposable.addAll(
-            _signinHotObservable.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(_buttonState::setValue),
-
-            _btnSigninSubject.observeOn(AndroidSchedulers.mainThread())
-                .subscribe { createUser(_emailSubject.value!!, _passwordSubject.value!!) },
-
-            _loadingSubject.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(_loading::setValue)
-        )
-    }
-
     enum class SigninState {
         SUCCESS
     }

@@ -4,15 +4,14 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.example.core.ui.profile.ProfileViewModel" />
+            type="com.example.core.ui.profilechange.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/SideMargin_20"
         android:layout_width="match_parent"
+        style="@style/SideMargin_20"
         android:layout_height="match_parent">
 
         <LinearLayout

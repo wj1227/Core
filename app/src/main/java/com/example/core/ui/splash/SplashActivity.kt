@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.core.ui.JNMainActivity
 import com.example.core.ui.login.LoginActivity
+import com.example.core.ui.main.MainActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 //todo 뷰모델 뷰 정리 해야함(매니페스트 포함)
@@ -34,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goMain() {
         Handler().postDelayed({
-            startActivity(Intent(this, JNMainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }, 2000)
     }
 }

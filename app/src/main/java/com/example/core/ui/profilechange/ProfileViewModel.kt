@@ -1,4 +1,4 @@
-package com.example.core.ui.profile
+package com.example.core.ui.profilechange
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
