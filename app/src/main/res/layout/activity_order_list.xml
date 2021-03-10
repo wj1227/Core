@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.example.core.ui.orderlist.OrderListViewModel" />
@@ -37,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{viewModel.outout.orders}"
+                android:text="@{viewModel.outout.orderText}"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_order_title"
@@ -113,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{viewModel.outout.suggestions}"
+                android:text="@{viewModel.outout.suggestionText}"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_suggestion_title"
@@ -153,7 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{viewModel.outout.selfCalls}"
+                android:text="@{viewModel.outout.selfCallText}"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_selfcall_title"
@@ -170,6 +171,15 @@
                 app:layout_constraintTop_toTopOf="@id/tv_selfcall_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isLoading() ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,17 +28,10 @@ class SelfCallActivity : BaseActivity<ActivitySelfCallBinding, SelfCallViewModel
                     SelfCallViewModel.SelfCallState.CANT_UPLOAD -> this@SelfCallActivity.showToast("양식 바르게")
                     SelfCallViewModel.SelfCallState.UPLOAD_SUCCESS -> {
                         this@SelfCallActivity.showToast("업로드성공")
-                        //findNavController().popBackStack()
+                        finish()
                     }
                 }
             })
-//            loading.observe(viewLifecycleOwner, Observer { result ->
-//                if (result) {
-//                    loadingView.show(parentFragmentManager, LOADING)
-//                } else {
-//                    loadingView.dismissAllowingStateLoss()
-//                }
-//            })
             errorMessage.observe(this@SelfCallActivity,Observer { errorMsg ->
                 this@SelfCallActivity.showToast(errorMsg)
             })

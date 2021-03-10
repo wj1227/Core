@@ -23,6 +23,6 @@ val viewModelModule = module {
     single { SelfCallViewModel(get()) }
     single { SuggestionViewModel(get()) }
     single { OrderViewModel(get()) }
-    single { OrderListViewModel(get()) }
+    single { OrderListViewModel(get(), get()) }
     single { SplashViewModel(get()) }
 }

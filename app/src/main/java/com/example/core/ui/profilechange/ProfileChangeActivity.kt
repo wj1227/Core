@@ -26,16 +26,12 @@ class ProfileChangeActivity : BaseActivity<ActivityProfileChangeBinding, Profile
         with(viewModel) {
             profileState.observe(this@ProfileChangeActivity, Observer { state ->
                 when (state) {
-                    ProfileViewModel.ProfileState.PROFILE_CHANGE -> "findNavController().popBackStack()"
+                    ProfileViewModel.ProfileState.PROFILE_CHANGE -> {
+                        this@ProfileChangeActivity.showToast("업로드 성공")
+                        finish()
+                    }
                 }
             })
-//            loading.observe(viewLifecycleOwner, Observer { result ->
-//                if (result) {
-//                    loadingView.show(parentFragmentManager, LOADING)
-//                } else {
-//                    loadingView.dismissAllowingStateLoss()
-//                }
-//            })
             errorMessage.observe(this@ProfileChangeActivity, Observer { errorMsg ->
                 this@ProfileChangeActivity.showToast(errorMsg)
             })

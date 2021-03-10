@@ -27,17 +27,15 @@ class SuggestionActivity : BaseActivity<ActivitySuggestionBinding, SuggestionVie
         with(viewModel) {
             state.observe(this@SuggestionActivity, Observer { state ->
                 when (state) {
-                    SuggestionViewModel.SuggestionState.FAIL_VALIDATOR -> this@SuggestionActivity.showToast("내용입력해라")
-                    SuggestionViewModel.SuggestionState.SUCCESS_UPLOAD -> "findNavController().popBackStack()"
+                    SuggestionViewModel.SuggestionState.FAIL_VALIDATOR -> {
+                        this@SuggestionActivity.showToast("내용을 입력해주세요")
+                    }
+                    SuggestionViewModel.SuggestionState.SUCCESS_UPLOAD -> {
+                        this@SuggestionActivity.showToast("건의사항 등록성공")
+                        finish()
+                    }
                 }
             })
-//            loading.observe(this@SuggestionActivity, Observer { result ->
-//                if (result) {
-//                    loadingView.show(parentFragmentManager, LOADING)
-//                } else {
-//                    loadingView.dismissAllowingStateLoss()
-//                }
-//            })
             errorMessage.observe(this@SuggestionActivity, Observer { errorMsg ->
                 this@SuggestionActivity.showToast(errorMsg)
             })

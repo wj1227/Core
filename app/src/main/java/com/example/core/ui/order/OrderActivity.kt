@@ -5,7 +5,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.example.core.R
 import com.example.core.base.BaseActivity
-import com.example.core.constants.LOADING
 import com.example.core.databinding.ActivityOrderBinding
 import com.example.core.utils.ext.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -14,6 +13,7 @@ class OrderActivity : BaseActivity<ActivityOrderBinding, OrderViewModel>(
     R.layout.activity_order
 ) {
     override val viewModel: OrderViewModel by viewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +30,13 @@ class OrderActivity : BaseActivity<ActivityOrderBinding, OrderViewModel>(
             })
             orderState.observe(this@OrderActivity, Observer { state ->
                 when (state) {
-                    OrderViewModel.OrderState.SUCCESS_UPLOAD -> "popBack()"
-                    OrderViewModel.OrderState.VALIDATOR -> this@OrderActivity.showToast("양식에 맞게 입력")
+                    OrderViewModel.OrderState.SUCCESS_UPLOAD -> {
+                        this@OrderActivity.showToast("업로드 성공")
+                        finish()
+                    }
+                    OrderViewModel.OrderState.VALIDATOR -> this@OrderActivity.showToast("양식에 맞게 입력해주세요")
                 }
             })
-//            loading.observe(this@OrderActivity, Observer { result ->
-//                if (result) {
-//                    loadingView.show(supportFragmentManager, LOADING)
-//                } else {
-//                    loadingView.dismissAllowingStateLoss()
-//                }
-//            })
         }
     }
 
