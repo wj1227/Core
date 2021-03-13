@@ -1,6 +1,5 @@
 package com.example.core.data.order
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
