@@ -32,7 +32,7 @@ interface OrderListViewModelType :
         val orderText: LiveData<String>
         val suggestionText: LiveData<String>
         val selfCallText: LiveData<String>
-        val orders: LiveData<List<Order>>
+        val orders: LiveData<ArrayList<Order>>
         val suggestions: LiveData<List<SuggestionItem>>
         val selfCalls: LiveData<List<SelfCallItem>>
     }
@@ -50,7 +50,7 @@ class OrderListViewModel(
     override val outout: OrderListViewModelType.Output
         get() = this
 
-    private val _ordersListSubject: BehaviorSubject<List<Order>> = BehaviorSubject.create()
+    private val _ordersListSubject: BehaviorSubject<ArrayList<Order>> = BehaviorSubject.create()
     private val _suggestionListSubject: BehaviorSubject<List<SuggestionItem>> = BehaviorSubject.create()
     private val _selfCallListSubject: BehaviorSubject<List<SelfCallItem>> = BehaviorSubject.create()
     private val _clickSubject: Subject<OrderListState> = PublishSubject.create()
@@ -67,8 +67,8 @@ class OrderListViewModel(
     override val selfCallText: LiveData<String>
         get() = _selfCallText
 
-    private val _orders: SingleLiveEvent<List<Order>> = SingleLiveEvent()
-    override val orders: LiveData<List<Order>>
+    private val _orders: SingleLiveEvent<ArrayList<Order>> = SingleLiveEvent()
+    override val orders: LiveData<ArrayList<Order>>
         get() = _orders
 
     private val _suggestions: SingleLiveEvent<List<SuggestionItem>> = SingleLiveEvent()
@@ -91,7 +91,7 @@ class OrderListViewModel(
                 .dataChanges()
                 .subscribe({
                     val orderList = it.value().toObjects(Order::class.java)
-                    _ordersListSubject.onNext(orderList)
+                    _ordersListSubject.onNext(orderList as ArrayList<Order>)
                     _orderText.value = "${orderList.size} 건"
                 }, {
 
@@ -123,7 +123,6 @@ class OrderListViewModel(
     }
 
     private fun setList(state: OrderListState) {
-        println("setlist: $state")
         when (state) {
             OrderListState.CLICK_ORDER -> _orders.value = _ordersListSubject.value
             OrderListState.CLICK_SUGGESTION -> _suggestions.value = _suggestionListSubject.value
