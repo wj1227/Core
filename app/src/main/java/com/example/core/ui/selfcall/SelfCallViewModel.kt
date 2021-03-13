@@ -115,7 +115,6 @@ class SelfCallViewModel(
             }, {
                 _errorMessage.value = it.localizedMessage
             }).addTo(compositeDisposable)
-
     }
 
     private fun createItem() = SelfCallItem(
@@ -124,7 +123,8 @@ class SelfCallViewModel(
         work = _workSubject.value!!,
         salary = _salarySubject.value!!,
         year = _yearSubject.value!!,
-        hope = _hopeSubject.value!!
+        hope = _hopeSubject.value!!,
+        date = System.currentTimeMillis()
     )
 
     enum class SelfCallState {

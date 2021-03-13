@@ -3,25 +3,29 @@ package com.example.core.ui.orderlist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.androidhuman.rxfirebase2.firestore.dataChanges
-import com.androidhuman.rxfirebase2.firestore.model.Value
 import com.example.core.base.BaseViewModel
 import com.example.core.base.ViewModelType
-import com.example.core.constants.*
+import com.example.core.constants.EMAIL
+import com.example.core.constants.ORDER
+import com.example.core.constants.SELF_CALL
+import com.example.core.constants.SUGGESTION
 import com.example.core.data.order.Order
 import com.example.core.data.orderlist.source.OrderListRepository
 import com.example.core.data.selfcall.SelfCallItem
 import com.example.core.data.suggestion.SuggestionItem
 import com.example.core.utils.SingleLiveEvent
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
-import io.reactivex.rxkotlin.addTo
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.Subject
 
 interface OrderListViewModelType :
     ViewModelType<OrderListViewModelType.Input, OrderListViewModelType.Output> {
     interface Input {
-        fun onOrderClick(order: List<Order>)
-        fun onSuggestionClick(suggestion: List<SuggestionItem>)
-        fun onSelfCallClick(selfCall: List<SelfCallItem>)
+        fun onOrderClick()
+        fun onSuggestionClick()
+        fun onSelfCallClick()
     }
 
     interface Output {
@@ -46,6 +50,10 @@ class OrderListViewModel(
     override val outout: OrderListViewModelType.Output
         get() = this
 
+    private val _ordersListSubject: BehaviorSubject<List<Order>> = BehaviorSubject.create()
+    private val _suggestionListSubject: BehaviorSubject<List<SuggestionItem>> = BehaviorSubject.create()
+    private val _selfCallListSubject: BehaviorSubject<List<SelfCallItem>> = BehaviorSubject.create()
+    private val _clickSubject: Subject<OrderListState> = PublishSubject.create()
 
     private val _orderText: MutableLiveData<String> = MutableLiveData()
     override val orderText: LiveData<String>
@@ -71,48 +79,62 @@ class OrderListViewModel(
     override val selfCalls: LiveData<List<SelfCallItem>>
         get() = _selfCalls
 
-    override fun onOrderClick(order: List<Order>) {
-        TODO("Not yet implemented")
-    }
+    override fun onOrderClick() = _clickSubject.onNext(OrderListState.CLICK_ORDER)
 
-    override fun onSuggestionClick(suggestion: List<SuggestionItem>) {
-        TODO("Not yet implemented")
-    }
+    override fun onSuggestionClick() = _clickSubject.onNext(OrderListState.CLICK_SUGGESTION)
 
-    override fun onSelfCallClick(selfCall: List<SelfCallItem>) {
-        TODO("Not yet implemented")
-    }
+    override fun onSelfCallClick() = _clickSubject.onNext(OrderListState.CLICK_SELFCALL)
 
     init {
-        database.collection(ORDER).whereEqualTo(EMAIL, repository.email)
-            .dataChanges()
-            .subscribe({
-                val orderList = it.value().toObjects(Order::class.java)
-                _orders.value = orderList
-                _orderText.value = "${orderList.size} 건"
-            }, {
+        compositeDisposable.addAll(
+            database.collection(ORDER).whereEqualTo(EMAIL, repository.email)
+                .dataChanges()
+                .subscribe({
+                    val orderList = it.value().toObjects(Order::class.java)
+                    _ordersListSubject.onNext(orderList)
+                    _orderText.value = "${orderList.size} 건"
+                }, {
 
-            }).addTo(compositeDisposable)
+                }),
 
-        database.collection(SELF_CALL).whereEqualTo(EMAIL, repository.email)
-            .dataChanges()
-            .subscribe({
-                val selfCallList = it.value().toObjects(SelfCallItem::class.java)
-                _selfCalls.value = selfCallList
-                _selfCallText.value = "${selfCallList.size} 건"
-            }, {
+            database.collection(SELF_CALL).whereEqualTo(EMAIL, repository.email)
+                .dataChanges()
+                .subscribe({
+                    val selfCallList = it.value().toObjects(SelfCallItem::class.java)
+                    _selfCallListSubject.onNext(selfCallList)
+                    _selfCallText.value = "${selfCallList.size} 건"
+                }, {
 
-            }).addTo(compositeDisposable)
+                }),
 
-        database.collection(SUGGESTION).whereEqualTo(EMAIL, repository.email)
-            .dataChanges()
-            .subscribe({
-                val suggestionList = it.value().toObjects(SuggestionItem::class.java)
-                _suggestions.value = suggestionList
-                _suggestionText.value = "${suggestionList.size} 건"
-            }, {
+            database.collection(SUGGESTION).whereEqualTo(EMAIL, repository.email)
+                .dataChanges()
+                .subscribe({
+                    val suggestionList = it.value().toObjects(SuggestionItem::class.java)
+                    _suggestionListSubject.onNext(suggestionList)
+                    _suggestionText.value = "${suggestionList.size} 건"
+                }, {
 
-            }).addTo(compositeDisposable)
+                }),
+
+            _clickSubject.observeOn(AndroidSchedulers.mainThread())
+                .subscribe { setList(it) }
+        )
+    }
+
+    private fun setList(state: OrderListState) {
+        println("setlist: $state")
+        when (state) {
+            OrderListState.CLICK_ORDER -> _orders.value = _ordersListSubject.value
+            OrderListState.CLICK_SUGGESTION -> _suggestions.value = _suggestionListSubject.value
+            OrderListState.CLICK_SELFCALL -> _selfCalls.value = _selfCallListSubject.value
+        }
+    }
+
+    enum class OrderListState {
+        CLICK_ORDER,
+        CLICK_SUGGESTION,
+        CLICK_SELFCALL
     }
 
 }

@@ -6,5 +6,6 @@ data class SelfCallItem(
     val work: String? = null,
     val salary: String? = null,
     val year: String? = null,
-    val hope: String? = null
+    val hope: String? = null,
+    val date: Long? = null
 )

@@ -1,6 +1,7 @@
 package com.example.core.ui.orderlist
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.example.core.R
 import com.example.core.base.BaseActivity
 import com.example.core.databinding.ActivityOrderListBinding
@@ -18,5 +19,17 @@ class OrderListActivity : BaseActivity<ActivityOrderListBinding, OrderListViewMo
 
     override fun initObserving() {
         super.initObserving()
+
+        with(viewModel) {
+            orders.observe(this@OrderListActivity, Observer {
+                println("zzz: $it")
+            })
+            suggestions.observe(this@OrderListActivity, Observer {
+                println("sug: $it")
+            })
+            selfCalls.observe(this@OrderListActivity, Observer {
+                println("self: $it")
+            })
+        }
     }
 }
