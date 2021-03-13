@@ -1,13 +1,13 @@
-package com.example.core.ui.orderlist.order
+package com.example.core.ui.orderlist.suggestion
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.data.order.Order
-import com.example.core.databinding.ItemOrderBinding
+import com.example.core.data.suggestion.SuggestionItem
+import com.example.core.databinding.ItemSuggestionBinding
 
-class OrderListOrderAdapter : RecyclerView.Adapter<OrderListOrderAdapter.ItemHolder>() {
-    private val itemList = mutableListOf<Order>()
+class OrderListSuggestionAdapter : RecyclerView.Adapter<OrderListSuggestionAdapter.ItemHolder>() {
+    private val itemList = mutableListOf<SuggestionItem>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,10 +23,10 @@ class OrderListOrderAdapter : RecyclerView.Adapter<OrderListOrderAdapter.ItemHol
     override fun getItemCount() = itemList.size
 
     class ItemHolder(
-        private val binding: ItemOrderBinding
+        private val binding: ItemSuggestionBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Order) {
+        fun bind(item: SuggestionItem) {
             binding.item = item
             binding.executePendingBindings()
         }
@@ -34,16 +34,17 @@ class OrderListOrderAdapter : RecyclerView.Adapter<OrderListOrderAdapter.ItemHol
         companion object Factory {
             fun create(parent: ViewGroup): ItemHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = ItemOrderBinding.inflate(layoutInflater, parent, false)
+                val view = ItemSuggestionBinding.inflate(layoutInflater, parent, false)
 
                 return ItemHolder(view)
             }
         }
     }
 
-    fun addItem(item: List<Order>) {
+    fun addItem(item: List<SuggestionItem>) {
         this.itemList.clear()
         this.itemList.addAll(item)
         this.notifyDataSetChanged()
     }
+
 }

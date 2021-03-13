@@ -1,32 +1,29 @@
-package com.example.core.ui.orderlist.order
+package com.example.core.ui.orderlist.suggestion
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.R
-import com.example.core.constants.ORDER
-import com.example.core.data.order.Order
+import com.example.core.constants.SUGGESTION
+import com.example.core.data.suggestion.SuggestionItem
 
-class OrderListOrderActivity : AppCompatActivity() {
+class OrderListSuggestionActivity : AppCompatActivity() {
 
-    private val orders by lazy {
-        intent.getParcelableArrayListExtra<Order>(ORDER)
+    private val suggestion by lazy {
+        intent.getParcelableArrayListExtra<SuggestionItem>(SUGGESTION)
     }
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: OrderListOrderAdapter
+    private lateinit var adapter: OrderListSuggestionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_orderlist_order)
+        setContentView(R.layout.activity_orderlist_suggestion)
 
         initView()
         initAdapter()
 
-        orders?.let {
+        suggestion?.let {
             adapter.addItem(it)
         }
     }
@@ -36,8 +33,7 @@ class OrderListOrderActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        adapter = OrderListOrderAdapter()
+        adapter = OrderListSuggestionAdapter()
         recyclerView.adapter = adapter
     }
-
 }

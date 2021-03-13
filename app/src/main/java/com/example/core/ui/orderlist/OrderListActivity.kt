@@ -6,8 +6,12 @@ import androidx.lifecycle.Observer
 import com.example.core.R
 import com.example.core.base.BaseActivity
 import com.example.core.constants.ORDER
+import com.example.core.constants.SELF_CALL
+import com.example.core.constants.SUGGESTION
 import com.example.core.databinding.ActivityOrderListBinding
 import com.example.core.ui.orderlist.order.OrderListOrderActivity
+import com.example.core.ui.orderlist.selfcall.OrderListSelfCallActivity
+import com.example.core.ui.orderlist.suggestion.OrderListSuggestionActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OrderListActivity : BaseActivity<ActivityOrderListBinding, OrderListViewModel>(
@@ -31,10 +35,16 @@ class OrderListActivity : BaseActivity<ActivityOrderListBinding, OrderListViewMo
                 startActivity(intent)
             })
             suggestions.observe(this@OrderListActivity, Observer {
-                println("sug: $it")
+                val intent = Intent(this@OrderListActivity, OrderListSuggestionActivity::class.java).apply {
+                    putExtra(SUGGESTION, it)
+                }
+                startActivity(intent)
             })
             selfCalls.observe(this@OrderListActivity, Observer {
-                println("self: $it")
+                val intent = Intent(this@OrderListActivity, OrderListSelfCallActivity::class.java).apply {
+                    putExtra(SELF_CALL, it)
+                }
+                startActivity(intent)
             })
         }
     }

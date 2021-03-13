@@ -33,8 +33,8 @@ interface OrderListViewModelType :
         val suggestionText: LiveData<String>
         val selfCallText: LiveData<String>
         val orders: LiveData<ArrayList<Order>>
-        val suggestions: LiveData<List<SuggestionItem>>
-        val selfCalls: LiveData<List<SelfCallItem>>
+        val suggestions: LiveData<ArrayList<SuggestionItem>>
+        val selfCalls: LiveData<ArrayList<SelfCallItem>>
     }
 }
 
@@ -51,8 +51,8 @@ class OrderListViewModel(
         get() = this
 
     private val _ordersListSubject: BehaviorSubject<ArrayList<Order>> = BehaviorSubject.create()
-    private val _suggestionListSubject: BehaviorSubject<List<SuggestionItem>> = BehaviorSubject.create()
-    private val _selfCallListSubject: BehaviorSubject<List<SelfCallItem>> = BehaviorSubject.create()
+    private val _suggestionListSubject: BehaviorSubject<ArrayList<SuggestionItem>> = BehaviorSubject.create()
+    private val _selfCallListSubject: BehaviorSubject<ArrayList<SelfCallItem>> = BehaviorSubject.create()
     private val _clickSubject: Subject<OrderListState> = PublishSubject.create()
 
     private val _orderText: MutableLiveData<String> = MutableLiveData()
@@ -67,16 +67,16 @@ class OrderListViewModel(
     override val selfCallText: LiveData<String>
         get() = _selfCallText
 
-    private val _orders: SingleLiveEvent<ArrayList<Order>> = SingleLiveEvent()
+    private val _orders: MutableLiveData<ArrayList<Order>> = MutableLiveData()
     override val orders: LiveData<ArrayList<Order>>
         get() = _orders
 
-    private val _suggestions: SingleLiveEvent<List<SuggestionItem>> = SingleLiveEvent()
-    override val suggestions: LiveData<List<SuggestionItem>>
+    private val _suggestions: MutableLiveData<ArrayList<SuggestionItem>> = MutableLiveData()
+    override val suggestions: LiveData<ArrayList<SuggestionItem>>
         get() = _suggestions
 
-    private val _selfCalls: SingleLiveEvent<List<SelfCallItem>> = SingleLiveEvent()
-    override val selfCalls: LiveData<List<SelfCallItem>>
+    private val _selfCalls: MutableLiveData<ArrayList<SelfCallItem>> = MutableLiveData()
+    override val selfCalls: LiveData<ArrayList<SelfCallItem>>
         get() = _selfCalls
 
     override fun onOrderClick() = _clickSubject.onNext(OrderListState.CLICK_ORDER)
@@ -101,7 +101,7 @@ class OrderListViewModel(
                 .dataChanges()
                 .subscribe({
                     val selfCallList = it.value().toObjects(SelfCallItem::class.java)
-                    _selfCallListSubject.onNext(selfCallList)
+                    _selfCallListSubject.onNext(selfCallList as ArrayList<SelfCallItem>)
                     _selfCallText.value = "${selfCallList.size} 건"
                 }, {
 
@@ -111,7 +111,7 @@ class OrderListViewModel(
                 .dataChanges()
                 .subscribe({
                     val suggestionList = it.value().toObjects(SuggestionItem::class.java)
-                    _suggestionListSubject.onNext(suggestionList)
+                    _suggestionListSubject.onNext(suggestionList as ArrayList<SuggestionItem>)
                     _suggestionText.value = "${suggestionList.size} 건"
                 }, {
 

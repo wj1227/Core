@@ -5,10 +5,9 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="item"
-            type="com.example.core.data.order.Order" />
+            type="com.example.core.data.suggestion.SuggestionItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,16 +27,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{item.tag}"
-            android:textSize="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="주문태그" />
-
-        <TextView
             android:id="@+id/tv_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,17 +34,7 @@
             android:text="내용"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag" />
-
-        <TextView
-            android:id="@+id/tv_ea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="수량"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@id/tv_description"
-            app:layout_constraintTop_toBottomOf="@id/tv_description_text" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -65,7 +44,7 @@
             android:layout_marginTop="10dp"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@id/tv_description"
-            app:layout_constraintTop_toBottomOf="@id/tv_ea" />
+            app:layout_constraintTop_toBottomOf="@id/tv_description_text" />
 
         <TextView
             android:id="@+id/tv_description_text"
@@ -79,17 +58,6 @@
             tools:text="내용이 들어갑니다\n1234\nㅋㅋㅋㅋㅋㅋㅋ" />
 
         <TextView
-            android:id="@+id/tv_ea_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@{String.valueOf(item.ea)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/gl"
-            app:layout_constraintTop_toTopOf="@id/tv_ea"
-            tools:text="1ro" />
-
-        <TextView
             android:id="@+id/tv_date_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,7 +66,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/gl"
             app:layout_constraintTop_toTopOf="@id/tv_date"
-            tools:text="1ro" />
+            tools:text="00년 00월 00일" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,13 +1,13 @@
-package com.example.core.ui.orderlist.order
+package com.example.core.ui.orderlist.selfcall
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.data.order.Order
-import com.example.core.databinding.ItemOrderBinding
+import com.example.core.data.selfcall.SelfCallItem
+import com.example.core.databinding.ItemSelfcallBinding
 
-class OrderListOrderAdapter : RecyclerView.Adapter<OrderListOrderAdapter.ItemHolder>() {
-    private val itemList = mutableListOf<Order>()
+class OrderListSelfCallAdapter : RecyclerView.Adapter<OrderListSelfCallAdapter.ItemHolder>() {
+    private val itemList = mutableListOf<SelfCallItem>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,10 +23,10 @@ class OrderListOrderAdapter : RecyclerView.Adapter<OrderListOrderAdapter.ItemHol
     override fun getItemCount() = itemList.size
 
     class ItemHolder(
-        private val binding: ItemOrderBinding
+        private val binding: ItemSelfcallBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Order) {
+        fun bind(item: SelfCallItem) {
             binding.item = item
             binding.executePendingBindings()
         }
@@ -34,16 +34,17 @@ class OrderListOrderAdapter : RecyclerView.Adapter<OrderListOrderAdapter.ItemHol
         companion object Factory {
             fun create(parent: ViewGroup): ItemHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = ItemOrderBinding.inflate(layoutInflater, parent, false)
+                val view = ItemSelfcallBinding.inflate(layoutInflater, parent, false)
 
                 return ItemHolder(view)
             }
         }
     }
 
-    fun addItem(item: List<Order>) {
+    fun addItem(item: List<SelfCallItem>) {
         this.itemList.clear()
         this.itemList.addAll(item)
         this.notifyDataSetChanged()
     }
+
 }

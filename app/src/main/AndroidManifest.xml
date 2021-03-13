@@ -68,6 +68,17 @@
             android:launchMode="singleTop"
             android:theme="@style/Theme.Core" />
 
+        <activity android:name=".ui.orderlist.selfcall.OrderListSelfCallActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.orderlist.suggestion.OrderListSuggestionActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+
     </application>
 
 </manifest>

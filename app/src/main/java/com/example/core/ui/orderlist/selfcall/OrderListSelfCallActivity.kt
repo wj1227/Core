@@ -1,23 +1,20 @@
-package com.example.core.ui.orderlist.order
+package com.example.core.ui.orderlist.selfcall
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.R
-import com.example.core.constants.ORDER
-import com.example.core.data.order.Order
+import com.example.core.constants.SELF_CALL
+import com.example.core.data.selfcall.SelfCallItem
 
-class OrderListOrderActivity : AppCompatActivity() {
+class OrderListSelfCallActivity : AppCompatActivity() {
 
-    private val orders by lazy {
-        intent.getParcelableArrayListExtra<Order>(ORDER)
+    private val selfcall by lazy {
+        intent.getParcelableArrayListExtra<SelfCallItem>(SELF_CALL)
     }
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: OrderListOrderAdapter
+    private lateinit var adapter: OrderListSelfCallAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +23,7 @@ class OrderListOrderActivity : AppCompatActivity() {
         initView()
         initAdapter()
 
-        orders?.let {
+        selfcall?.let {
             adapter.addItem(it)
         }
     }
@@ -36,7 +33,7 @@ class OrderListOrderActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        adapter = OrderListOrderAdapter()
+        adapter = OrderListSelfCallAdapter()
         recyclerView.adapter = adapter
     }
 

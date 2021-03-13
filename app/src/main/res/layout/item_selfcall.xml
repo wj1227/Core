@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.example.core.data.order.Order" />
+            type="com.example.core.data.selfcall.SelfCallItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,67 +38,85 @@
             tools:text="주문태그" />
 
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/tv_work"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="내용"
+            android:text="희망업무"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_tag" />
 
         <TextView
-            android:id="@+id/tv_ea"
+            android:id="@+id/tv_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수량"
             android:layout_marginTop="10dp"
+            android:text="희망년차"
             android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@id/tv_description"
-            app:layout_constraintTop_toBottomOf="@id/tv_description_text" />
+            app:layout_constraintStart_toStartOf="@id/tv_work"
+            app:layout_constraintTop_toBottomOf="@id/tv_work" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="하고싶은 말"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@id/tv_work"
+            app:layout_constraintTop_toBottomOf="@id/tv_year" />
 
         <TextView
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="작성일"
             android:layout_marginTop="10dp"
+            android:text="작성일"
             android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@id/tv_description"
-            app:layout_constraintTop_toBottomOf="@id/tv_ea" />
+            app:layout_constraintStart_toStartOf="@id/tv_work"
+            app:layout_constraintTop_toBottomOf="@id/tv_hope_text" />
 
         <TextView
-            android:id="@+id/tv_description_text"
+            android:id="@+id/tv_work_text"
             android:layout_width="0dp"
+            android:text="@{item.work}"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@{item.text}"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/gl"
-            app:layout_constraintTop_toTopOf="@id/tv_description"
-            tools:text="내용이 들어갑니다\n1234\nㅋㅋㅋㅋㅋㅋㅋ" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_work"
+            tools:text="프레스금형" />
 
         <TextView
-            android:id="@+id/tv_ea_text"
+            android:id="@+id/tv_year_text"
+            android:layout_width="0dp"
+            android:text="@{item.year}"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_year"
+            tools:text="1년차" />
+
+        <TextView
+            android:id="@+id/tv_hope_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@{String.valueOf(item.ea)}"
-            app:layout_constraintEnd_toEndOf="parent"
+            bind:bindText="@{item.hope}"
             app:layout_constraintStart_toEndOf="@id/gl"
-            app:layout_constraintTop_toTopOf="@id/tv_ea"
-            tools:text="1ro" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_text"
+            tools:text="하고싶은말~~\nㅋㅋㅋㅋㅋ\n1234" />
 
         <TextView
             android:id="@+id/tv_date_text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             bind:convertToDate="@{item.date}"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/gl"
             app:layout_constraintTop_toTopOf="@id/tv_date"
-            tools:text="1ro" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="00년 00월 00일"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
