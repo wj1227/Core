@@ -4,8 +4,6 @@ import com.example.core.data.login.source.remote.LoginRemoteDataSource
 import com.example.core.data.login.source.remote.LoginRemoteDataSourceImpl
 import com.example.core.data.order.source.remote.OrderRemoteDataSource
 import com.example.core.data.order.source.remote.OrderRemoteDataSourceImpl
-import com.example.core.data.orderlist.source.remote.OrderListRemoteDataSource
-import com.example.core.data.orderlist.source.remote.OrderListRemoteDataSourceImpl
 import com.example.core.data.profile.source.remote.ProfileRemoteDataSource
 import com.example.core.data.profile.source.remote.ProfileRemoteDataSourceImpl
 import com.example.core.data.selfcall.source.remote.SelfCallRemoteDataSource
@@ -53,9 +51,4 @@ val remoteModule = module {
         )
     }
 
-    single<OrderListRemoteDataSource> {
-        OrderListRemoteDataSourceImpl(
-            get()
-        )
-    }
 }

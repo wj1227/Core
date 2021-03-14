@@ -1,5 +1,9 @@
 package com.example.core.data.order
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Order(
     val email: String? = null,
     val tag: String? = null,
@@ -9,4 +13,4 @@ data class Order(
     val company: String? = null,
     val cellPhone: String? = null,
     val date: Long? = null
-)
+) : Parcelable

@@ -74,7 +74,7 @@ val repositoryModule = module {
 
     single<OrderListRepository> {
         OrderListRepositoryImpl(
-            get(), get()
+            get()
         )
     }
 

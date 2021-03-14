@@ -22,12 +22,84 @@
         </activity>
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Core" />
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.signin.SigninActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.main.MainActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.profilechange.ProfileChangeActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.selfcall.SelfCallActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.suggestion.SuggestionActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.order.OrderActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.orderlist.OrderListActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.orderlist.order.OrderListOrderActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.orderlist.selfcall.OrderListSelfCallActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.orderlist.suggestion.OrderListSuggestionActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.OwnerMainActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.alluser.OwnerMainAllUserActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.order.OwnerMainOrderActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.selfcall.OwnerMainSelfCallActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.suggestion.OwnerMainSuggestionActivity"
+            android:exported="false"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Core" />
 

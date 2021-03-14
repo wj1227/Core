@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.core.BR
+import com.example.core.R
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity<VDB : ViewDataBinding, VM : ViewModelType<*, *>>(
@@ -27,6 +28,7 @@ abstract class BaseActivity<VDB : ViewDataBinding, VM : ViewModelType<*, *>>(
         }
 
         initObserving()
+        overridePendingTransition(R.anim.from_right, R.anim.to_left)
     }
 
     open fun initObserving() { }

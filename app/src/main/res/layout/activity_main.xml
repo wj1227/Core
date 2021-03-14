@@ -1,24 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.core.ui.MainViewModel" />
+            type="com.example.core.ui.main.MainViewModel" />
     </data>
 
-    <fragment
-        android:id="@+id/nav_host"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/SideMargin_20"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/main_nav" />
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/btn_receipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="접수하기"
+            app:layout_constraintBottom_toTopOf="@id/btn_suggestion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:onClick="@{() -> viewModel.onReceiptClick()}" />
+
+        <Button
+            android:id="@+id/btn_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="건의사항"
+            app:layout_constraintBottom_toTopOf="@id/btn_self_call"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_receipt"
+            bind:onClick="@{() -> viewModel.onSuggestionClick()}" />
+
+        <Button
+            android:id="@+id/btn_self_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="구인구직"
+            app:layout_constraintBottom_toTopOf="@id/btn_my_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_suggestion"
+            bind:onClick="@{() -> viewModel.onSelfCallClick()}" />
+
+        <Button
+            android:id="@+id/btn_my_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내 주문현황"
+            app:layout_constraintBottom_toTopOf="@id/btn_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_self_call"
+            bind:onClick="@{() -> viewModel.onMyOrderClcik()}" />
+
+        <Button
+            android:id="@+id/btn_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내 정보"
+            app:layout_constraintBottom_toTopOf="@id/btn_logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_my_order"
+            bind:onClick="@{() -> viewModel.onMyProfileClick()}" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_profile"
+            bind:onClick="@{() -> viewModel.onLogoutClick()}" />
+
+        <Button
+            android:id="@+id/btn_quit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원탈퇴"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_profile"
+            bind:onClick="@{() -> viewModel.onLogoutClick()}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
