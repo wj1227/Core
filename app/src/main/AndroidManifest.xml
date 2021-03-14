@@ -78,6 +78,31 @@
             android:launchMode="singleTop"
             android:theme="@style/Theme.Core" />
 
+        <activity android:name=".ui.ownermain.OwnerMainActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.alluser.OwnerMainAllUserActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.order.OwnerMainOrderActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.selfcall.OwnerMainSelfCallActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
+        <activity android:name=".ui.ownermain.suggestion.OwnerMainSuggestionActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Core" />
+
 
     </application>
 

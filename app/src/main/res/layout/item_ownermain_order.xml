@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.core.data.order.Order" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_item_order"
+        style="@style/SideMargin_20"
+        android:layout_marginBottom="12dp"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="접수"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_ea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="수량"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tag" />
+
+        <TextView
+            android:id="@+id/tv_need"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="요청사항"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ea" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="작성자"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_need_text" />
+
+        <TextView
+            android:id="@+id/tv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="회사명"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_cellphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="핸드폰"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_company" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="작성일"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_cellphone" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="접수명"
+            android:textSize="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintTop_toTopOf="@id/tv_tag"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="20개"
+            android:textSize="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintTop_toTopOf="@id/tv_ea"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_need_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="요청사항이 들어갑니다\n1234\n123asdfasdf"
+            android:textSize="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintTop_toTopOf="@id/tv_need"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="홍길동"
+            android:textSize="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintTop_toTopOf="@id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="코아정밀"
+            android:textSize="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintTop_toTopOf="@id/tv_company"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="01000000000"
+            android:textSize="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintTop_toTopOf="@id/tv_cellphone"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="00년 00월 00일"
+            android:textSize="20dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintTop_toTopOf="@id/tv_date"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

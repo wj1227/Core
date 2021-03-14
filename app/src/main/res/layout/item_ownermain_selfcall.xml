@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.core.data.selfcall.SelfCallItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_item_order"
+        style="@style/SideMargin_20"
+        android:layout_marginBottom="12dp"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="희망업무"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tag" />
+
+        <TextView
+            android:id="@+id/tv_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="희망연봉"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_work" />
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="희망년차"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_salary" />
+
+        <TextView
+            android:id="@+id/tv_hope"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="하고싶은 말"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_year" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="작성일"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_hope_text" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            tools:text="구인"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_tag" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            tools:text="알곤용접"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_work" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            tools:text="3000만원"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_salary" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            tools:text="2년차"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_year" />
+
+        <TextView
+            android:id="@+id/tv_hope_text"
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            tools:text="ㅋㅋㅋㅋㅋ하고싶은말~\n1234\n55555555\ndddd"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_hope" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:textSize="20dp"
+            tools:text="00년 00월 00일"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
