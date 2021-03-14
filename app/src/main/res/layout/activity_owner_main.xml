@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
@@ -24,7 +26,8 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            bind:onClick="@{() -> viewModel.input.onOrderClick()}">
 
             <TextView
                 android:id="@+id/tv_order_title"
@@ -39,9 +42,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@{viewModel.outout.orderSize}"
                 android:textSize="24dp"
                 android:textStyle="bold"
-                android:text="@{viewModel.outout.orderSize}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_order_title"
                 app:layout_constraintStart_toEndOf="@id/tv_order_title"
                 app:layout_constraintTop_toTopOf="@id/tv_order_title"
@@ -64,7 +67,8 @@
             android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ctl_order">
+            app:layout_constraintTop_toBottomOf="@id/ctl_order"
+            bind:onClick="@{() -> viewModel.input.onSuggestionClick()}">
 
             <TextView
                 android:id="@+id/tv_suggestion_title"
@@ -79,9 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@{viewModel.outout.suggestionSize}"
                 android:textSize="24dp"
                 android:textStyle="bold"
-                android:text="@{viewModel.outout.suggestionSize}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_suggestion_title"
                 app:layout_constraintStart_toEndOf="@id/tv_suggestion_title"
                 app:layout_constraintTop_toTopOf="@id/tv_suggestion_title"
@@ -104,7 +108,8 @@
             android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ctl_suggestion">
+            app:layout_constraintTop_toBottomOf="@id/ctl_suggestion"
+            bind:onClick="@{() -> viewModel.input.onSelfCallClick()}">
 
             <TextView
                 android:id="@+id/tv_selfcall_title"
@@ -119,9 +124,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@{viewModel.outout.selfcallSize}"
                 android:textSize="24dp"
                 android:textStyle="bold"
-                android:text="@{viewModel.outout.selfcallSize}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_selfcall_title"
                 app:layout_constraintStart_toEndOf="@id/tv_selfcall_title"
                 app:layout_constraintTop_toTopOf="@id/tv_selfcall_title"
@@ -144,7 +149,8 @@
             android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ctl_selfcall">
+            app:layout_constraintTop_toBottomOf="@id/ctl_selfcall"
+            bind:onClick="@{() -> viewModel.input.onAllUserClick()}">
 
             <TextView
                 android:id="@+id/tv_user_title"
@@ -159,9 +165,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:text="@{viewModel.outout.allUserSize}"
                 android:textSize="24dp"
                 android:textStyle="bold"
-                android:text="@{viewModel.outout.selfcallSize}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_user_title"
                 app:layout_constraintStart_toEndOf="@id/tv_user_title"
                 app:layout_constraintTop_toTopOf="@id/tv_user_title"

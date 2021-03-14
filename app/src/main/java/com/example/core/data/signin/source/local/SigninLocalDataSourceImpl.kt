@@ -10,11 +10,11 @@ class SigninLocalDataSourceImpl(private val prefs: PreferenceManager) : SigninLo
 
     private fun localSaveUser(user: SigninUser) =
         with(prefs) {
-            email = user.email
-            name = user.name
-            company = user.company
-            position = user.position
-            cellPhone = user.cellPhone
+            email = user.email!!
+            name = user.name!!
+            company = user.company!!
+            position = user.position!!
+            cellPhone = user.cellPhone!!
         }
 
 }

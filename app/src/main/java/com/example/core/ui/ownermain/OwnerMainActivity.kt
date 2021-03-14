@@ -1,6 +1,7 @@
 package com.example.core.ui.ownermain
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.example.core.R
 import com.example.core.base.BaseActivity
 import com.example.core.databinding.ActivityOwnerMainBinding
@@ -18,5 +19,20 @@ class OwnerMainActivity : BaseActivity<ActivityOwnerMainBinding, OwnerMainViewMo
 
     override fun initObserving() {
         super.initObserving()
+
+        with(viewModel) {
+            users.observe(this@OwnerMainActivity, {
+                println("user ok")
+            })
+            selfcalls.observe(this@OwnerMainActivity, {
+                println("selfcalls ok")
+            })
+            suggestions.observe(this@OwnerMainActivity, {
+                println("suggestions ok")
+            })
+            orders.observe(this@OwnerMainActivity, {
+                println("orders ok")
+            })
+        }
     }
 }
